@@ -1,0 +1,61 @@
+<div>
+  <div class="grid" style="gap: 2rem; padding-left: 1rem">
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="searchValue" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="searchValue"
+            styleClass="w-full"
+            appendTo="body"
+            #searchValue
+            name="searchValue"
+            [required]="true"
+            [autoDisplayFirst]="false"
+            [filter]="true"
+            filterBy="account_no,account_name"
+            optionLabel="account_no"
+            [options]="clientData"
+            [panelStyle]="{ width: '1400px' }"
+            [resetFilterOnHide]="true"
+            panelStyleClass="dropdown-table">
+            <ng-template let-header pTemplate="header" let-index="index">
+              <div class="dropdownTableHeader no-scrollbar">
+                <table class="dropdown-table-list">
+                  <tr>
+                    <th>Account No.</th>
+                    <th>Name</th>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+            <ng-template let-client pTemplate="client" let-index="index">
+              <table class="dropdown-table-list">
+                <tr (click)="onAdd(client)">
+                  <td>{{ client?.account_no }}</td>
+                  <td>{{ client?.account_name }}</td>
+                </tr>
+              </table>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div *ngIf="showData">
+      <div *ngIf="DisplayData?.product_name">
+        <h4>{{ ProductName }}:{{ DisplayData?.product_name }}</h4>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showData" class="grid" style="gap: 2rem; padding-left: 1rem">
+    <div>
+      {{ DisplayData?.account_name }}
+    </div>
+    <div *ngIf="DisplayData.acc_no">A/C :{{ DisplayData?.account_no }}</div>
+    <div>CIF :{{ DisplayData?.cif_acc_no }}</div>
+    <div *ngIf="DisplayData.city_name">city :{{ DisplayData?.city_name }}</div>
+    <div *ngIf="DisplayData.pin_code">pin :{{ DisplayData?.pin_code }}</div>
+    <div *ngIf="DisplayData.mobile_no">mobile :{{ DisplayData?.mobile_no }}</div>
+  </div>
+</div>

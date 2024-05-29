@@ -1,0 +1,27 @@
+{
+  "English": {
+    "branch_code": "Bank Code",
+    "branch_name": "Branch Name",
+    "parent_id": "Parent ID",
+    "external_id": "External ID",
+    "opening_date": "Opening Date",
+    "ifsc_no": "IFSC",
+    "address1": "Address1",
+    "address2": "Address2",
+    "address3": "Address3",
+    "address4": "Address4",
+    "city_id": "City",
+    "mobile1": "Mobile1",
+    "mobile2": "Mobile2",
+    "phone1": "Phone1",
+    "phone2": "Phone2",
+    "email": "Email",
+    "is_ho_branch": "HO Branch",
+    "cash_gl_account_id": "Cash GL Account",
+    "cheque_gl_account_id": "Cheque GL Account",
+    "is_locked": "Locked",
+    "is_deactivated": "Active",
+    "is_denomination_required": "Denomination"
+  },
+  "Gujarati": {}
+}

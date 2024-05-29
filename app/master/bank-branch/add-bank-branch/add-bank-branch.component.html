@@ -1,0 +1,90 @@
+<form [formGroup]="addNewCodeForm" (submit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="branch_name" class="col-12 mb-2 md:col-3 md:mb-0">Branch Name<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-9">
+          <input
+            pInputText
+            id="branch_name"
+            type="text"
+            formControlName="branch_name"
+            #test_c="control"
+            [autofocus]="true"
+            [required]="true" />
+        </div>
+        <div class="col-12"><form-errors text="Branch Name" [controlRef]="test_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="bank_address" class="col-12 mb-2 md:col-3 md:mb-0">bank_address</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="bank_address" type="text" formControlName="bank_address" #bank_address="control" [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="bank_ifsc" class="col-12 mb-2 md:col-3 md:mb-0">bank_ifsc</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="bank_ifsc" type="text" formControlName="bank_ifsc" #bank_ifsc="control" [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="bank_iban" class="col-12 mb-2 md:col-3 md:mb-0">bank_iban</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="bank_iban" type="text" formControlName="bank_iban" #bank_iban="control" [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="bank_swift" class="col-12 mb-2 md:col-3 md:mb-0">bank_swift</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="bank_swift" type="text" formControlName="bank_swift" #bank_swift="control" [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="alias" class="col-12 mb-2 md:col-3 md:mb-0">Active</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_deactivated"
+            name="is_deactivated"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="inverseStatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="is_locked" class="col-12 mb-2 md:col-3 md:mb-0">Is Locked</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_locked"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_locked"
+            name="is_locked"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button pButton type="submit" icon="pi pi-check" label="Save" class="px-4 mx-0"></button>
+    </div>
+  </div>
+</form>

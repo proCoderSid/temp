@@ -1,0 +1,990 @@
+<form [formGroup]="addNewSavingsProductForm" (submit)="onSubmit()">
+  <p-tabView>
+    <p-tabPanel header="Details/Terms">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="product_name" class="col-12 mb-2 md:col-4 md:mb-0">Product Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="product_name" type="text" formControlName="product_name" #product_name_c="control" [required]="true" />
+            </div>
+            <div class="col-12">
+              <form-errors text="Product Name" [controlRef]="product_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="in_native" class="col-12 mb-2 md:col-4 md:mb-0">In Native<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="in_native" type="text" formControlName="in_native" #in_native />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="short_name" class="col-12 mb-2 md:col-4 md:mb-0">Short Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="short_name" type="text" formControlName="short_name" #short_name_c="control" [required]="true" />
+            </div>
+            <div class="col-12">
+              <form-errors text="Short Name" [controlRef]="short_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="start_date" class="col-12 mb-2 md:col-4 md:mb-0">Start Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="start_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="start_date"
+                name="start_date"
+                [showIcon]="true"
+                #start_date></p-calendar>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="resolution_date"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="close_date" class="col-12 mb-2 md:col-4 md:mb-0">Close Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="close_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="close_date"
+                name="close_date"
+                [showIcon]="true"
+                #close_date></p-calendar>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="resolution_date"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="description" class="col-12 mb-2 md:col-4 md:mb-0">Description<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="description" type="text" formControlName="description" #description />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-12 mb-2 md:col-4 md:mb-0"> Active? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                [filter]="true"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                placeholder="Select"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <h1 class="text-sm py-2">Terms</h1>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="annual_interest_rate" class="col-12 mb-2 md:col-4 md:mb-0">
+              Annual Interest Rate<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="annual_interest_rate"
+                type="text"
+                formControlName="annual_interest_rate"
+                #annual_interest_rate_c="control" />
+            </div>
+            <div class="col-12">
+              <form-errors text="Annual Interest Rate" [controlRef]="annual_interest_rate_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_compounding_period" class="col-12 mb-2 md:col-4 md:mb-0">Interest Compounding Period </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_compounding_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_compounding_period"
+                name="interest_compounding_period"
+                #interest_compounding_period
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select"
+                [options]="interestCompoundingPeriod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_posting_period" class="col-12 mb-2 md:col-4 md:mb-0">Interest Posting Period </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_posting_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_posting_period"
+                name="interest_posting_period"
+                #interest_posting_period
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="interestPostingPeriod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculation_using" class="col-12 mb-2 md:col-4 md:mb-0">Interest Calculation Using </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_calculation_using"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_calculation_using"
+                name="interest_calculation_using"
+                #interest_calculation_using
+                optionLabel="label"
+                placeholder="Select"
+                optionValue="value"
+                [filter]="true"
+                [options]="RDInterestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculation_days_in_year" class="col-12 mb-2 md:col-4 md:mb-0"> Days in Year </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_calculation_days_in_year"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_calculation_days_in_year"
+                name="interest_calculation_days_in_year"
+                #interest_calculation_days_in_year
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="DaysInMonthYear"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="product_type" class="col-12 mb-2 md:col-4 md:mb-0">Product Type</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="product_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="product_type"
+                name="product_type"
+                #product_type
+                optionLabel="label"
+                [filter]="true"
+                placeholder="Select"
+                optionValue="value"
+                [options]="savingsProductType"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="addNewSavingsProductForm.get('product_type')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="cs_withdrawal_policy" class="col-12 mb-2 md:col-4 md:mb-0">Cs Withdrawal Policy</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="cs_withdrawal_policy"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="cs_withdrawal_policy"
+                name="cs_withdrawal_policy"
+                #product_type
+                optionLabel="label"
+                placeholder="Select"
+                optionValue="value"
+                [filter]="true"
+                [options]="csSavingWithdrawal"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="addNewSavingsProductForm.get('product_type')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="cs_amount" class="col-12 mb-2 md:col-4 md:mb-0">Cs Amount<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="cs_amount" type="text" formControlName="cs_amount" #cs_amount [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div *ngIf="addNewSavingsProductForm.get('product_type')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="cs_amount_period" class="col-12 mb-2 md:col-4 md:mb-0">Cs Amount Period</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="cs_amount_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="cs_amount_period"
+                name="cs_amount_period"
+                #product_type
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="csSavingPeriod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_required_opening_balance" class="col-12 mb-2 md:col-4 md:mb-0">
+              Min Required Opening Balance<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_required_opening_balance"
+                type="text"
+                formControlName="min_required_opening_balance"
+                #min_required_opening_balance_c="control"
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <form-errors text="Min Required Opening Balance" [controlRef]="min_required_opening_balance_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="lockin_period_frequency" class="col-12 mb-2 md:col-4 md:mb-0">
+              Lockin Period Frequency<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="lockin_period_frequency"
+                type="text"
+                formControlName="lockin_period_frequency"
+                #lockin_period_frequency_c="control"
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <form-errors text="Lockin Period Frequency" [controlRef]="lockin_period_frequency_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="lockin_period_frequency_type" class="col-12 mb-2 md:col-4 md:mb-0"></label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="lockin_period_frequency_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="lockin_period_frequency_type"
+                name="lockin_period_frequency_type"
+                #lockin_period_frequency_type
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select"
+                [options]="frequencyList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="apply_withdrawal_fee_for_transfer" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Apply Withdrawal Fee For Transfer</label
+            >
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="apply_withdrawal_fee_for_transfer"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="apply_withdrawal_fee_for_transfer"
+                name="apply_withdrawal_fee_for_transfer"
+                #apply_withdrawal_fee_for_transfer
+                optionLabel="text"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_balance_for_interest_calculation" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Balance For Interest Calculation<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_balance_for_interest_calculation"
+                type="text"
+                formControlName="min_balance_for_interest_calculation"
+                #min_balance_for_interest_calculation
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="enforce_min_required_balance" class="col-12 mb-2 md:col-4 md:mb-0">Enforce Min Required Balance</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="enforce_min_required_balance"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="enforce_min_required_balance"
+                name="enforce_min_required_balance"
+                #enforce_min_required_balance
+                optionLabel="text"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_required_balance" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Required Balance<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_required_balance"
+                type="text"
+                formControlName="min_required_balance"
+                #min_required_balance
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="allow_overdraft" class="col-12 mb-2 md:col-4 md:mb-0">Allow Overdraft</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="allow_overdraft"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="allow_overdraft"
+                name="allow_overdraft"
+                #allow_overdraft
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdraft_limit" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdraft Limit<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="overdraft_limit" type="text" formControlName="overdraft_limit" #overdraft_limit [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="annual_interest_rate_overdraft" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Annual Interest Rate Overdraft<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="annual_interest_rate_overdraft"
+                type="text"
+                formControlName="annual_interest_rate_overdraft"
+                #annual_interest_rate_overdraft
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_overdraft_for_interest_calculation" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Overdraft For Interest Calculation<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_overdraft_for_interest_calculation"
+                type="text"
+                formControlName="min_overdraft_for_interest_calculation"
+                #product_name
+                [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="apply_tds" class="col-12 mb-2 md:col-4 md:mb-0">Is TDS Applicable</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="apply_tds"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="apply_tds"
+                name="apply_tds"
+                #apply_tds
+                optionLabel="text"
+                optionValue="value"
+                placeholder="Select"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="tds_gl_account_id" class="col-12 mb-2 md:col-4 md:mb-0">Tds Gl Account Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="tds_gl_account_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="tds_gl_account_id"
+                name="tds_gl_account_id"
+                #tds_gl_account_id
+                optionLabel="account_name"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select"
+                [options]="GLAccountData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="allow_dormancy_tracking" class="col-12 mb-2 md:col-4 md:mb-0">Allow Dormancy Tracking</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="allow_dormancy_tracking"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="allow_dormancy_tracking"
+                name="allow_dormancy_tracking"
+                #allow_dormancy_tracking
+                placeholder="Select"
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="days_to_inactive" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Days To Inactive<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="days_to_inactive" type="text" formControlName="days_to_inactive" #days_to_inactive [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="days_to_dormancy" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Days To Dormancy<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="days_to_dormancy" type="text" formControlName="days_to_dormancy" #days_to_dormancy [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="days_to_escheat" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Days To Escheat<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="days_to_escheat" type="text" formControlName="days_to_escheat" #days_to_escheat [required]="true" />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Charges">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Charges</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <h1 class="text-sm"><label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">Account Open</label></h1>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">charge</label>
+            <p-dropdown
+              styleClass="w-full"
+              appendTo="body"
+              optionLabel="charge_name"
+              optionValue="id"
+              placeholder="Select"
+              (onChange)="selectedCharge($event)"
+              [filter]="true"
+              placeholder="select"
+              [options]="chargeData"></p-dropdown>
+            <button pButton (click)="addCharge(101, 'charge101')" type="button" label="Add Charge" class="px-4 mx-2"></button>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          styleClass="p-datatable-gridlines"
+          [value]="charge101"
+          *ngIf="showTable101">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="30%">Name</th>
+              <th width="30%">Type</th>
+              <th width="20%">Amount</th>
+              <th width="10%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-charge let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ charge?.charge_name }}</td>
+              <td width="30%">{{ charge?.charge_calculation_type }}</td>
+              <td width="25%">{{ charge?.amount }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(101, rowIndex, charge)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <h1 class="text-sm"><label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">Account Active</label></h1>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">charge</label>
+            <p-dropdown
+              styleClass="w-full"
+              appendTo="body"
+              optionLabel="charge_name"
+              optionValue="id"
+              [filter]="true"
+              placeholder="select"
+              (onChange)="selectedCharge($event)"
+              [options]="chargeData"></p-dropdown>
+            <button (click)="addCharge(102, 'charge102')" type="button" pButton label="Add Charge" class="px-4 mx-2"></button>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          styleClass="p-datatable-gridlines"
+          [value]="charge102"
+          *ngIf="showTable102">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="30%">Name</th>
+              <th width="30%">Type</th>
+              <th width="20%">Amount</th>
+              <th width="10%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-charge let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ charge?.charge_name }}</td>
+              <td width="30%">{{ charge?.charge_calculation_type }}</td>
+              <td width="25%">{{ charge?.amount }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(102, rowIndex, charge)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <h1 class="text-sm"><label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">Account Close</label></h1>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">charge</label>
+            <p-dropdown
+              styleClass="w-full"
+              appendTo="body"
+              optionLabel="charge_name"
+              optionValue="id"
+              [filter]="true"
+              placeholder="select"
+              (onChange)="selectedCharge($event)"
+              [options]="chargeData"></p-dropdown>
+            <button (click)="addCharge(105, 'charge105')" type="button" pButton label="Add Charge" class="px-4 mx-2"></button>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <h1 class="text-sm">
+              <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">Other Periodic Charge</label>
+            </h1>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          styleClass="p-datatable-gridlines"
+          [value]="charge105"
+          *ngIf="showTable105">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="30%">Name</th>
+              <th width="30%">Type</th>
+              <th width="20%">Amount</th>
+              <th width="10%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-charge let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ charge?.charge_name }}</td>
+              <td width="30%">{{ charge?.charge_calculation_type }}</td>
+              <td width="25%">{{ charge?.amount }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(105, rowIndex, charge)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">charge</label>
+            <p-dropdown
+              styleClass="w-full"
+              appendTo="body"
+              optionLabel="charge_name"
+              optionValue="id"
+              [filter]="true"
+              placeholder="select"
+              (onChange)="selectedCharge($event)"
+              [options]="chargeData"></p-dropdown>
+            <button pButton (click)="addCharge(110, 'charge110')" type="button" label="Add Charge" class="px-4 mx-2"></button>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          styleClass="p-datatable-gridlines"
+          [value]="charge110"
+          *ngIf="showTable110">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="30%">Name</th>
+              <th width="30%">Type</th>
+              <th width="20%">Amount</th>
+              <th width="10%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-charge let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ charge?.charge_name }}</td>
+              <td width="30%">{{ charge?.charge_calculation_type }}</td>
+              <td width="25%">{{ charge?.amount }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(110, rowIndex, charge)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="col-12"></div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Accounting">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Accounting</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="accounting_type" class="col-12 mb-2 md:col-4 md:mb-0">Accounting Type</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="accounting_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="accounting_type"
+                name="accounting_type"
+                #accounting_type
+                optionLabel="label"
+                placeholder="Select"
+                [filter]="true"
+                optionValue="value"
+                [options]="accountingTypeList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <ng-container *ngIf="addNewSavingsProductForm.get('accounting_type')?.value === 1">
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id1" class="col-12 mb-2 md:col-4 md:mb-0">ID1</label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id1"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id1"
+                  name="id1"
+                  #id1
+                  optionLabel="account_name"
+                  optionValue="id"
+                  [filter]="true"
+                  placeholder="Select"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id2" class="col-12 mb-2 md:col-4 md:mb-0">ID2 </label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id2"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id2"
+                  name="id2"
+                  #id2
+                  optionLabel="account_name"
+                  optionValue="id"
+                  [filter]="true"
+                  placeholder="Select"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+          <div class="col-12"></div>
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id3" class="col-12 mb-2 md:col-4 md:mb-0">ID3</label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id3"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id3"
+                  name="id3"
+                  #id3
+                  optionLabel="account_name"
+                  optionValue="id"
+                  placeholder="Select"
+                  [filter]="true"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+          <div class="col-12"></div>
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id4" class="col-12 mb-2 md:col-4 md:mb-0">ID4</label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id4"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id4"
+                  name="id4"
+                  #id4
+                  optionLabel="account_name"
+                  placeholder="Select"
+                  optionValue="id"
+                  [filter]="true"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+          <div class="col-12"></div>
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id4" class="col-12 mb-2 md:col-4 md:mb-0">ID5</label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id5"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id5"
+                  name="id5"
+                  #id4
+                  optionLabel="account_name"
+                  optionValue="id"
+                  [filter]="true"
+                  placeholder="Select"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+          <div class="col-12 sm:col-6 md:col-4">
+            <div class="field grid">
+              <label htmlFor="id4" class="col-12 mb-2 md:col-4 md:mb-0">ID6</label>
+              <div class="col-12 md:col-8">
+                <p-dropdown
+                  id="id4"
+                  styleClass="w-full"
+                  appendTo="body"
+                  formControlName="id6"
+                  name="id6"
+                  #id4
+                  optionLabel="account_name"
+                  optionValue="id"
+                  [filter]="true"
+                  placeholder="Select"
+                  [options]="GLAccountData"></p-dropdown>
+              </div>
+              <div class="col-12"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+  </p-tabView>
+</form>

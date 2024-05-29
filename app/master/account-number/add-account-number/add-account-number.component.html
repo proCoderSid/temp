@@ -1,0 +1,91 @@
+<form [formGroup]="AccountForm">
+  <div class="grid">
+    <div *ngIf="!accNumberData" class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-4 md:mb-0">Product Type ID</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="product_type_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="product_type_id"
+            #product_type_id_c="control"
+            name="product_type_id"
+            optionValue="id"
+            optionLabel="product_name"
+            [filter]="true"
+            placeholder="Select Product Type"
+            [options]="proTypeList"></p-dropdown>
+        </div>
+        <div class="col-12">
+          <form-errors text="Product Type ID" [controlRef]="product_type_id_c"></form-errors>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-4 md:mb-0">Prefix Type</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="prefix_type"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="prefix_type"
+            name="prefix_type"
+            optionValue="value"
+            optionLabel="text"
+            placeholder="select Prefix Type"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-4 md:mb-0">Total Length</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="total_length"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="total_length"
+            name="total_length"
+            optionValue="value"
+            optionLabel="text"
+            placeholder="Select Total Length"
+            [filter]="true"
+            [options]="lengthList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-4 md:mb-0">Account Type</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="account_type"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="account_type"
+            name="account_type"
+            optionValue="value"
+            optionLabel="text"
+            placeholder="Select Account Type"
+            [options]="account_typeList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="AccountForm.get('account_type')?.value > 0" class="col-12">
+      <div class="field grid">
+        <label htmlFor="name" class="col-12 mb-2 md:col-4 md:mb-0">number_start_from</label>
+        <div class="col-12 md:col-8">
+          <input styleClass="w-full" pInputText id="name" type="number" formControlName="number_start_from" name [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button pButton (click)="onSubmit()" icon="pi pi-check" label="SAVE" class="px-4"></button>
+    </div>
+  </div>
+</form>

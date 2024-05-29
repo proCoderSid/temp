@@ -1,0 +1,17 @@
+<p-tabView [scrollable]="true" autoHideButtons="false">
+  <p-tabPanel class="m-2" header="Saving Receipt CASH Entry">
+    <div class="grid">
+      <div class="col-9">
+        <h1 class="text-sm py-2">A/c Details</h1>
+        <app-client-transection
+          [formType]="'SavAcc'"
+          [ProductName]="'Saving Product'"
+          [editId]="selectedId"
+          (selectedClient)="clientSelected($event)"></app-client-transection>
+      </div>
+      <div class="col-3" *ngIf="debitAccountData" style="padding-top: 0.5rem">
+        <h3>Balance: {{ debitAccountData.account_balance_derived }}</h3>
+      </div>
+    </div>
+  </p-tabPanel></p-tabView
+>

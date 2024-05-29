@@ -1,0 +1,182 @@
+<form [formGroup]="addNewNumberMasterForm" (submit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">number Id</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="number_id"
+            formControlName="number_id"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="display_name"
+            optionValue="id"
+            [filter]="true"
+            [readonly]="mode === 'Edit'"
+            placeholder="Select Number"
+            (onChange)="verifyVoucher($event)"
+            [options]="numList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Method Of Numbering</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="method_of_numbering"
+            formControlName="method_of_numbering"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="label"
+            optionValue="value"
+            [filter]="true"
+            (onChange)="getNumberingMethod($event)"
+            [options]="NumberingMethod"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Is Deactivated</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="is_deactivated"
+            formControlName="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]="StatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('number_id')?.value != null">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Branch Id</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="branch_id"
+            formControlName="branch_id"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="branch_name"
+            optionValue="id"
+            [filter]="true"
+            [readonly]="mode === 'Edit'"
+            [options]="branchData"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12"
+      *ngIf="
+        addNewNumberMasterForm.get('method_of_numbering')?.value == 1 || addNewNumberMasterForm.get('method_of_numbering')?.value == 2
+      ">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Number Start From</label>
+        <div class="col-12 md:col-7">
+          <input pInputText type="text" formControlName="number_start_from" class="w-full" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('method_of_numbering')?.value == 1">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Total Length</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="branch_id"
+            formControlName="total_length"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]="lengthList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('method_of_numbering')?.value == 1">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Prefill With Zero</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="prefill_with_zero"
+            formControlName="prefill_with_zero"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]="StatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('method_of_numbering')?.value == 1">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Fix Prefix</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="fix_prefix"
+            formControlName="fix_prefix"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]="prefix_type"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('method_of_numbering')?.value == 1">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Prefix Text</label>
+        <div class="col-12 md:col-7">
+          <input pInputText type="text" formControlName="prefix_text" class="w-full" />
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12"
+      *ngIf="
+        addNewNumberMasterForm.get('method_of_numbering')?.value == 2 || addNewNumberMasterForm.get('method_of_numbering')?.value == 3
+      ">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Allow Duplicate</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="allow_duplicate"
+            formControlName="allow_duplicate"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]="StatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="addNewNumberMasterForm.get('method_of_numbering')?.value == 3">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-5 md:mb-0">Common No Id</label>
+        <div class="col-12 md:col-7">
+          <p-dropdown
+            id="common_no_id"
+            formControlName="common_no_id"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="SampleData"
+            optionValue="id"
+            [filter]="true"
+            [options]="commonNumber"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-right">
+      <button pButton type="submit" label="Save" class="px-4 mx-0" [disabled]="addNewNumberMasterForm.invalid"></button>
+    </div>
+  </div>
+</form>

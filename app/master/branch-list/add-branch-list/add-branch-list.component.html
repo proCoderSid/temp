@@ -1,0 +1,353 @@
+<form [formGroup]="addNewBranchForm" (submit)="onSubmit()">
+  <p-tabView>
+    <p-tabPanel header="Add Branch">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Branch Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="branch_name" class="col-12 mb-2 md:col-4 md:mb-0">Branch Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                #branch_name_c="control"
+                id="branch_name"
+                type="text"
+                formControlName="branch_name"
+                #branch_name
+                [required]="true" />
+            </div>
+            <div class="col-12"><form-errors text="Branch Name" [controlRef]="branch_name_c"></form-errors></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="branch_code" class="col-12 mb-2 md:col-4 md:mb-0">Branch Code<span class="text-red-500">*</span></label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="branch_code" formControlName="branch_code" name="branch_code" #branch_code_c="control" #branch_code />
+            </div>
+            <div class="col-12"><form-errors text="Branch Code" [controlRef]="branch_code_c"></form-errors></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="parent_id" class="col-12 mb-2 md:col-4 md:mb-0">Parent Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="parent_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="parent_id"
+                name="parent_id"
+                #parent_id
+                placeholder="select Parent Id"
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="external_id" class="col-12 mb-2 md:col-4 md:mb-0">External Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="external_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="external_id"
+                name="external_id"
+                #external_id
+                optionLabel="label"
+                optionValue="label"
+                placeholder="select External Id"
+                [filter]="true"
+                [options]="testId"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="opening_date" class="col-12 mb-2 md:col-4 md:mb-0">Opening Date<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="opening_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="opening_date"
+                name="opening_date"
+                [showIcon]="true"
+                [required]="true"
+                #opening_date_c="control"
+                #opening_date></p-calendar>
+            </div>
+            <div class="col-12"><form-errors text="Opening Date" [controlRef]="opening_date_c"></form-errors></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="ifsc_no" class="col-12 mb-2 md:col-4 md:mb-0">Ifsc No</label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="ifsc_no" formControlName="ifsc_no" name="ifsc_no" #ifsc_no />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12">
+          <h1 class="text-sm py-2">Personal Information</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address1" class="col-12 mb-2 md:col-4 md:mb-0"> Address 1 </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="address1" type="text" formControlName="address1" #address1 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address2" class="col-12 mb-2 md:col-4 md:mb-0"> Address 2 </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="address2" type="text" formControlName="address2" #address2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address3" class="col-12 mb-2 md:col-4 md:mb-0"> Address 3 </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="address3" type="text" formControlName="address3" #address3 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address4" class="col-12 mb-2 md:col-4 md:mb-0"> Address 4 </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="address4" type="text" formControlName="address4" #address4 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="city_id" class="col-12 mb-2 md:col-4 md:mb-0">City Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="city_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="city_id"
+                name="city_id"
+                optionLabel="city_name"
+                optionValue="id"
+                #city_id
+                [filter]="true"
+                placeholder="select City"
+                [options]="cityList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="mobile1" class="col-12 mb-2 md:col-4 md:mb-0">mobile1</label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="mobile1" formControlName="mobile1" name="mobile1" #mobile1 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="mobile2" class="col-12 mb-2 md:col-4 md:mb-0">mobile2</label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="mobile2" formControlName="mobile2" name="mobile2" #mobile2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="phone1" class="col-12 mb-2 md:col-4 md:mb-0">phone1 </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="phone1" type="text" formControlName="phone1" #phone1 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="phone2" class="col-12 mb-2 md:col-4 md:mb-0">phone2</label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="phone2" formControlName="phone2" name="phone2" #phone2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="email" class="col-12 mb-2 md:col-4 md:mb-0">Email</label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="email" formControlName="email" type="email" name="email" #email />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12">
+          <h1 class="text-sm py-2">General Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_ho_branch" class="col-12 mb-2 md:col-4 md:mb-0">Is Ho Branch </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_ho_branch"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_ho_branch"
+                name="is_ho_branch"
+                #is_ho_branch
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="select Is Ho Branch"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="cash_gl_account_id" class="col-12 mb-2 md:col-4 md:mb-0">Cash Gl Account Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="cash_gl_account_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="cash_gl_account_id"
+                name="cash_gl_account_id"
+                #cash_gl_account_id
+                optionLabel="account_name"
+                optionValue="id"
+                [filter]="true"
+                placeholder="select Cash Gl Account"
+                [options]="GLAccountData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="cheque_gl_account_id" class="col-12 mb-2 md:col-4 md:mb-0">Cheque Gl Account Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="cheque_gl_account_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="cheque_gl_account_id"
+                name="cheque_gl_account_id"
+                #cheque_gl_account_id
+                optionLabel="account_name"
+                optionValue="id"
+                placeholder="select Cheque Gl Account"
+                [filter]="true"
+                [options]="GLAccountData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_denomination_required" class="col-12 mb-2 md:col-4 md:mb-0">Is Denomination Required</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_denomination_required"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_denomination_required"
+                name="is_denomination_required"
+                #is_denomination_required
+                optionLabel="text"
+                optionValue="value"
+                placeholder="select Is Denomination Required"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-12 mb-2 md:col-4 md:mb-0">Is Deactivated </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="select Is Deactivated"
+                [options]="InverseStatusList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_locked" class="col-12 mb-2 md:col-4 md:mb-0">Is Locked </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_locked"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_locked"
+                name="is_locked"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="select Is Locked"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-right">
+        <button pButton icon="pi pi-check" label="SAVE" class="px-4"></button>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</form>

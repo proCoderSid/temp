@@ -1,0 +1,261 @@
+<form [formGroup]="addNewChargeForm" (submit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Charge Applies To</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="charge_applies_to"
+            formControlName="charge_applies_to"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="product_name"
+            optionValue="id"
+            (onChange)="product($event)"
+            placeholder="Select Charge Applies To"
+            [options]="chargeDataType"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="charge_name" class="col-12 mb-2 md:col-3 md:mb-0">Charge Name</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="charge_name" #charge_name_c="control" type="text" formControlName="charge_name" name [autofocus]="true" />
+        </div>
+        <div class="col-12"><form-errors text="Charge Name" [controlRef]="charge_name_c"></form-errors></div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="name" class="col-12 mb-2 md:col-3 md:mb-0">Native Name</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="name" type="text" formControlName="in_native" name [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Charge Time</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="charge_time"
+            formControlName="charge_time"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="value"
+            optionValue="id"
+            placeholder="Select Charge Time"
+            [filter]="true"
+            [options]="chargeTimeType"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Charge Calculation</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="charge_calculation"
+            formControlName="charge_calculation"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="value"
+            optionValue="id"
+            placeholder="Select Charge Calculation"
+            [options]="chargeCalculationType"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="amount" class="col-12 mb-2 md:col-3 md:mb-0">Amount</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="amount" #amount_c="control" type="text" formControlName="amount" name [autofocus]="true" />
+        </div>
+        <div class="col-12"><form-errors text="Amount" [controlRef]="amount_c"></form-errors></div>
+      </div>
+    </div>
+    <div *ngIf="addNewChargeForm.get('charge_applies_to')?.value === '1007'" class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">charge_payment_by</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="charge_payment_by"
+            formControlName="charge_payment_by"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="label"
+            optionValue="value"
+            [filter]="true"
+            placeholder="Select Charge Gl Type"
+            [options]="chargePaymentBy"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="addNewChargeForm.get('charge_applies_to')?.value === '1007' && addNewChargeForm.get('charge_time')?.value === '9'"
+      class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Is Frequency</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_frequency"
+            formControlName="is_frequency"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select Is Locked"
+            [options]="StatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        addNewChargeForm.get('is_frequency')?.value === 1 &&
+        addNewChargeForm.get('charge_applies_to')?.value === '1007' &&
+        addNewChargeForm.get('charge_time')?.value === '9'
+      "
+      class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Is Frequency</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_frequency"
+            formControlName="is_frequency"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select Is Locked"
+            [options]="chargeFrequency"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="addNewChargeForm.get('charge_time')?.value === '6' || addNewChargeForm.get('charge_time')?.value === '7'" class="col-12">
+      <div class="field grid">
+        <label htmlFor="due_date" class="col-12 mb-2 md:col-3 md:mb-0">Due Date</label>
+        <div class="col-12 md:col-9">
+          <p-calendar
+            appDateFormat
+            id="due_date"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="due_date"
+            name="due_date"
+            [showIcon]="true"
+            #due_date></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="addNewChargeForm.get('charge_time')?.value === '11' || addNewChargeForm.get('charge_time')?.value === '7'" class="col-12">
+      <div class="field grid">
+        <label htmlFor="amount" class="col-12 mb-2 md:col-3 md:mb-0">Charge Interval 2</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="amount" type="text" formControlName="amount" name [autofocus]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Charge Gl Type</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="charge_gl_type"
+            formControlName="charge_gl_type"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="label"
+            (onChange)="glAccTypeChange($event.value, 'Yes')"
+            optionValue="value"
+            [filter]="true"
+            placeholder="Select Charge Gl Type"
+            #charge_gl_type_c="control"
+            [options]="glAccountType"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Charge Gl Type" [controlRef]="charge_gl_type_c"></form-errors></div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Gl Account Id</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="gl_account_id"
+            formControlName="gl_account_id"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="account_name"
+            optionValue="id"
+            placeholder="Select Gl Account Id"
+            #gl_account_id_c="control"
+            [options]="simplifiedGLAccount"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Gl Account Id" [controlRef]="gl_account_id_c"></form-errors></div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Is Penalty</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_penalty"
+            formControlName="is_penalty"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select Is Penalty"
+            #is_penalty_c="control"
+            placeholder="Select Is Penalty"
+            [options]="StatusList"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Is Penalty" [controlRef]="is_penalty_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">is Deactivated</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_deactivated"
+            formControlName="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select Is Deactivated"
+            #is_deactivated_c="control"
+            [options]="StatusList"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Is Deactivated" [controlRef]="is_deactivated_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label class="col-12 mb-2 md:col-3 md:mb-0">Is Locked</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_locked"
+            formControlName="is_locked"
+            styleClass="w-full"
+            appendTo="body"
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select Is Locked"
+            #is_locked_c="control"
+            [options]="StatusList"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Is Locked" [controlRef]="is_locked_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12 text-right">
+      <button pButton type="submit" label="Save" class="px-4 mx-0" [disabled]="addNewChargeForm.invalid"></button>
+    </div>
+  </div>
+</form>

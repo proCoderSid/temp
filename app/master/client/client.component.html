@@ -1,0 +1,92 @@
+<form [formGroup]="getAccountForm" action="">
+  <div class="grid">
+    <!-- <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="searchBy" class="col-12 mb-2 md:col-4 md:mb-0"> searchBy </label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="searchBy"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="searchBy"
+            name="searchBy"
+            optionValue="value"
+            optionLabel="label"
+            placeholder="Select"
+            [options]="searchBy"></p-dropdown>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div> -->
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="searchValue" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="searchValue"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="searchValue"
+            #searchValue
+            #searchValue_c="control"
+            name="searchValue"
+            [required]="true"
+            [autoDisplayFirst]="false"
+            [filter]="true"
+            filterBy="account_no,account_name"
+            optionLabel="account_no"
+            [options]="clientData"
+            [panelStyle]="{ width: '1400px' }"
+            [resetFilterOnHide]="true"
+            panelStyleClass="dropdown-table">
+            <ng-template let-header pTemplate="header" let-index="index">
+              <div class="dropdownTableHeader no-scrollbar">
+                <table class="dropdown-table-list">
+                  <tr>
+                    <th>Account No.</th>
+                    <th>Name</th>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+            <ng-template let-client pTemplate="client" let-index="index">
+              <table class="dropdown-table-list">
+                <tr (click)="onAdd(client)">
+                  <td>{{ client?.account_no }}</td>
+                  <td>{{ client?.account_name }}</td>
+                </tr>
+              </table>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showData">
+    <div *ngIf="DisplayData.city_name">Product Name :{{ DisplayData?.product_name }}</div>
+    <div>{{ DisplayData?.account_name }}</div>
+    <div *ngIf="!DisplayData.acc_no">{{ DisplayData?.member_type_name }}</div>
+    <div *ngIf="DisplayData.acc_no">A/C :{{ DisplayData?.account_no }}</div>
+    <div>CIF :{{ DisplayData?.cif_acc_no }}</div>
+    <div *ngIf="DisplayData.city_name">city :{{ DisplayData?.city_name }}</div>
+    <div *ngIf="DisplayData.pin_code">pin :{{ DisplayData?.pin_code }}</div>
+    <div *ngIf="DisplayData.mobile_no">mobile :{{ DisplayData?.mobile_no }}</div>
+  </div>
+  <!-- <p-table *ngIf="showTable" styleClass="p-datatable-gridlines" [value]="clientData">
+    <ng-template pTemplate="header">
+      <tr>
+        <th width="5%">Sr.No</th>
+        <th width="30%">Account No.</th>
+        <th width="25%">Name</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+      <tr (click)="onAdd(client)">
+        <td width="5%">{{ rowIndex + 1 }}</td>
+        <td width="30%">{{ client?.account_no }}</td>
+        <td width="25%">{{ client?.account_name }}</td>
+      </tr>
+    </ng-template>
+  </p-table> -->
+</form>

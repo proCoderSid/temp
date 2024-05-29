@@ -1,0 +1,169 @@
+<div class="grid m-0 align-items-center">
+  <div class="col-12">
+    <input styleClass="w-full" pInputText id="name" type="text" class="input_language" [autofocus]="true" />
+  </div>
+
+  <div class="col-12 pt-0">
+    <p-table
+      #pTable
+      styleClass="p-datatable-gridlines {{ pager.smallTable === true ? 'p-datatable-sm' : '' }} {{
+        pager.smallTable === false ? 'p-datatable-lg' : ''
+      }}"
+      [value]="demoList"
+      [lazy]="true"
+      dataKey="id"
+      [paginator]="true"
+      [rows]="pager.recordsPerPage"
+      [totalRecords]="pager.totalRecords"
+      [loading]="pager.loading"
+      [rowsPerPageOptions]="pager.rowsPerPageOptions"
+      [sortField]="pager.sortBy"
+      [pageLinks]="5"
+      [paginatorDropdownAppendTo]="'body'"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowHover]="true"
+      [sortMode]="'single'"
+      [showLoader]="false"
+      [scrollable]="true"
+      (onLazyLoad)="onLazyLoad($event)"
+      (onSort)="pager.onSort($event)"
+      (onPage)="pager.onPageChange($event)"
+      (rowsChange)="pager.onRecordsPerPageChange($event)"
+      [filters]="pager.filters"
+      [reorderableColumns]="true"
+      [resizableColumns]="true"
+      [columns]="pager.headerList"
+      columnResizeMode="expand"
+      scrollHeight="calc(100vh - 190px)">
+      <ng-template pTemplate="caption">
+        <div class="grid">
+          <div class="col-fixed pr-0">
+            <app-demo-add-edit-component (recordAdded)="getTableData()"></app-demo-add-edit-component>
+          </div>
+          <div class="col-12 sm:col-8 md:col-4 lg:col-3 px-0 ml-auto"></div>
+          <div class="col-fixed pl-0">
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-filter"
+              pTooltip="Filter"
+              tooltipPosition="bottom"
+              (click)="pager.showFilterRow = !pager.showFilterRow"
+              class="py-1 px-3 ml-2"></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-refresh"
+              pTooltip="Refresh"
+              tooltipPosition="bottom"
+              (click)="getTableData()"
+              class="py-1 px-3 ml-2"></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-file"
+              (click)="pTable.exportCSV()"
+              class="py-1 px-3 ml-2"
+              pTooltip="CSV"
+              tooltipPosition="bottom"></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-file-excel"
+              (click)="exportExcel()"
+              class="p-button-success py-1 px-3 ml-2"
+              pTooltip="Excel"
+              tooltipPosition="bottom"></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-file-pdf"
+              (click)="exportPdf()"
+              class="p-button-warning py-1 px-3 ml-2"
+              pTooltip="PDF"
+              tooltipPosition="bottom"></button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <ng-container *ngFor="let header of columns; trackBy: headerTrackBy">
+            <th
+              [class]="header?.classList"
+              [pSortableColumnDisabled]="header.sortable === false"
+              [pSortableColumn]="header.field"
+              [style.minWidth]="header?.minWidth"
+              pResizableColumn
+              pReorderableColumn
+              *ngIf="pager.hideColumn(header)">
+              <div class="d-flex">
+                {{ header.title }}
+                <span class="ms-auto"></span>
+                <p-sortIcon class="ms-1" (click)="onSortIcon($event)" *ngIf="header.sortable !== false" [field]="header.field"></p-sortIcon>
+              </div>
+            </th>
+          </ng-container>
+        </tr>
+        <tr *ngIf="pager.showFilterRow">
+          <ng-container *ngFor="let header of columns; trackBy: headerTrackBy">
+            <th class="py-2" [class]="header?.classList" [style.width]="header.width" [style.maxWidth]="header.width">filter goes here</th>
+          </ng-container>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-dataItem let-columns="columns" let-rowIndex="rowIndex">
+        <tr>
+          <ng-container *ngFor="let header of columns; trackBy: headerTrackBy">
+            <td [class]="{ 'text-end': header?.align === 'RIGHT', 'text-center': header?.align === 'CENTER' }">
+              <data-format
+                class=" {{ dataItem?.cellClass?.[header.field] || dataItem?.class }}"
+                [data]="dataItem[header.field]"
+                [dataItem]="dataItem"
+                [type]="header?.type"
+                [config]="header?.typeConfig"
+                [rowIndex]="rowIndex">
+                <ng-container *ngIf="header.field === 'action'">
+                  <div class="grid m-0 align-items-center">
+                    <div class="col-fixed p-0" #element>
+                      <p-inputSwitch
+                        styleClass=""
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="dataItem.is_active"
+                        [trueValue]="1"
+                        [falseValue]="0"></p-inputSwitch>
+                    </div>
+                    <div class="col-fixed p-0">
+                      <p-button type="button" styleClass="p-button-sm ml-3" [icon]="'pi pi-wrench'"></p-button>
+                      <p-button type="button" styleClass="p-button-sm p-button-danger ml-3" [icon]="'pi pi-trash'"></p-button>
+                    </div>
+                  </div>
+                </ng-container>
+              </data-format>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="loadingbody">
+        <tr *ngFor="let tr of [].constructor(5)">
+          <td *ngFor="let td of [].constructor(pager.headerList.length)">
+            <p-skeleton></p-skeleton>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td colspan="5">
+            <div class="row mx-0 align-items-center" style="height: 250px">
+              <div class="col-12 text-center">No Data found</div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

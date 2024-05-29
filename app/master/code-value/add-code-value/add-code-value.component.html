@@ -1,0 +1,104 @@
+<form [formGroup]="addNewCodeForm" (submit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="code_value" class="col-12 mb-2 md:col-3 md:mb-0">Code Value<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-9">
+          <input
+            pInputText
+            id="code_value"
+            type="text"
+            formControlName="code_value"
+            #test_c="control"
+            [autofocus]="true"
+            [required]="true" />
+        </div>
+        <div class="col-12"><form-errors text="Code Value" [controlRef]="test_c"></form-errors></div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="in_native" class="col-12 mb-2 md:col-3 md:mb-0">In Native</label>
+        <div class="col-12 md:col-9">
+          <input
+            pInputText
+            id="in_native"
+            type="text"
+            formControlName="in_native"
+            #in_native="control"
+            [autofocus]="true"
+            [required]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="order_position" class="col-12 mb-2 md:col-3 md:mb-0">Order Position </label>
+        <div class="col-12 md:col-9">
+          <input
+            pInputText
+            id="order_position"
+            type="text"
+            formControlName="order_position"
+            #order_position="control"
+            [autofocus]="true"
+            [required]="true" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="alias" class="col-12 mb-2 md:col-3 md:mb-0">Active</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_deactivated"
+            name="is_deactivated"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="inverseStatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="is_default" class="col-12 mb-2 md:col-3 md:mb-0">Is Default</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_default"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_default"
+            name="is_default"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="is_locked" class="col-12 mb-2 md:col-3 md:mb-0">Is Locked</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_locked"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_locked"
+            name="is_locked"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button pButton type="submit" icon="pi pi-check" label="Save" class="px-4 mx-0"></button>
+    </div>
+  </div>
+</form>

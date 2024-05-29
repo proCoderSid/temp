@@ -1,0 +1,12 @@
+<div class="pro-layout">
+  <app-banner id="pro-banner" (onResize)="onResizeBanner()" />
+  <app-header id="pro-header" (onResize)="onResizeHeader()" />
+  <app-breadcrumb id="pro-breadcrumb" (onResize)="onResizeBreadcrumb()" />
+  <!-- <app-sidebar id="pro-sidebar" (onResize)="onResizeSidebar()" /> -->
+  <div id="pro-content-wrapper">
+    <div id="pro-content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer id="pro-footer" (onResize)="onResizeFooter()" />
+  </div>
+</div>

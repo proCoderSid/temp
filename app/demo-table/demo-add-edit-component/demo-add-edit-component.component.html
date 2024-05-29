@@ -1,0 +1,202 @@
+<button pButton icon="pi pi-plus" (click)="showDialog()" label="Add Record" pTooltip="Add Record" tooltipPosition="bottom"></button>
+<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '1000px' }" appendTo="body">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">Header Content</span>
+  </ng-template>
+  <form>
+    <div class="grid">
+      <div class="col-7 pr-0">
+        <p-fieldset class="col-12 py-0" legend="Main Detail" [toggleable]="true">
+          <div class="field grid">
+            <label htmlFor="name" class="col-12 mb-2 md:col-3 md:mb-0">Name</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="name" type="text" #name [autofocus]="true" (keyup.Enter)="alias.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="alias" class="col-12 mb-2 md:col-3 md:mb-0">Alias</label>
+            <div class="col-12 md:col-5">
+              <input #C pInputText id="alias" type="text" #alias (keyup.Enter)="groupName.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="groupName" class="col-12 mb-2 md:col-3 md:mb-0">Group Name</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="groupName" type="text" #groupName (keyup.Enter)="balanceMethod.focus()" />
+            </div>
+          </div>
+        </p-fieldset>
+        <p-fieldset class="col-12 mt-2" legend="Balance Method" [toggleable]="true">
+          <div class="field grid">
+            <label htmlFor="balanceMethod" class="col-12 mb-2 md:col-3 md:mb-0">Balance Method</label>
+            <div class="col-12 md:col-5">
+              <!-- <input pInputText  id="balanceMethod" type="text" /> -->
+
+              <p-dropdown
+                #balanceMethod
+                styleClass="w-full"
+                id="balanceMethod"
+                [panelStyle]="{ width: '400px' }"
+                panelStyleClass="dropdown-table"
+                [filter]="true"
+                appendTo="body"
+                [options]="[
+                  {
+                    label: 'test 0',
+                    value: 'test0'
+                  },
+                  {
+                    label: 'test 1',
+                    value: 'test1'
+                  },
+                  {
+                    label: 'test 2',
+                    value: 'test2'
+                  },
+                  {
+                    label: 'test 3',
+                    value: 'test3'
+                  },
+                  {
+                    label: 'test 4',
+                    value: 'test4'
+                  },
+                  {
+                    label: 'test 5',
+                    value: 'test5'
+                  },
+                  {
+                    label: 'test 0',
+                    value: 'test0'
+                  },
+                  {
+                    label: 'test 1',
+                    value: 'test1'
+                  },
+                  {
+                    label: 'test 2',
+                    value: 'test2'
+                  },
+                  {
+                    label: 'test 3',
+                    value: 'test3'
+                  },
+                  {
+                    label: 'test 4',
+                    value: 'test4'
+                  },
+                  {
+                    label: 'test 5',
+                    value: 'test5'
+                  }
+                ]"
+                (keyup.Enter)="openingBalance.focus()">
+                <ng-template let-header pTemplate="header" let-index="index">
+                  <table class="dropdown-table-list dropdownTableHeader">
+                    <tr>
+                      <td>Label</td>
+                      <td>Value</td>
+                    </tr>
+                  </table></ng-template
+                >
+                <ng-template let-item pTemplate="item" let-index="index">
+                  <table class="dropdown-table-list">
+                    <tr>
+                      <td>{{ item.label }}</td>
+                      <td>{{ item.value }}</td>
+                    </tr>
+                  </table>
+                </ng-template>
+                <ng-template let-footer pTemplate="footer" let-index="index">
+                  <div class="dropdownTableFooter grid gap-2 p-2 mx-0 justify-content-center">
+                    <button pButton icon="pi pi-plus" class="p-button-sm p-button-success" label="Add"></button>
+                    <button pButton icon="pi pi-cog" class="p-button-sm p-button-primary" label="Edit"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger" label="Delete"></button>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="openingBalance" class="col-12 mb-2 md:col-3 md:mb-0">Opening Balance</label>
+            <div class="col-12 md:col-5">
+              <input pInputText id="openingBalance" #openingBalance type="text" (keyup.Enter)="openingBalance2.focus()" />
+            </div>
+            <div class="col-12 md:col-4">
+              <input pInputText id="openingBalance" #openingBalance2 type="text" (keyup.Enter)="city.focus()" />
+            </div>
+          </div>
+        </p-fieldset>
+      </div>
+      <div class="col-5">
+        <p-fieldset class="col-12" legend="Party Detail" [toggleable]="true">
+          <div class="field grid">
+            <label htmlFor="city" class="col-12 mb-2 md:col-3 md:mb-0">City</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="city" #city type="text" (keyup.Enter)="pincode.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="pincode" class="col-12 mb-2 md:col-3 md:mb-0">Pincode</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="pincode" #pincode type="text" (keyup.Enter)="area.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="area" class="col-12 mb-2 md:col-3 md:mb-0">Area</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="area" #area type="text" (keyup.Enter)="mobile.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="mobile" class="col-12 mb-2 md:col-3 md:mb-0">Mobile</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="mobile" #mobile type="text" (keyup.Enter)="state.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="state" class="col-12 mb-2 md:col-3 md:mb-0">State</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="state" #state type="text" (keyup.Enter)="panNo.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="panNo" class="col-12 mb-2 md:col-3 md:mb-0">PAN No</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="panNo" #panNo type="text" (keyup.Enter)="aadharNo.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="aadharNo" class="col-12 mb-2 md:col-3 md:mb-0">Aadhar No</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="aadharNo" #aadharNo type="text" (keyup.Enter)="gstinNo.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="gstinNo" class="col-12 mb-2 md:col-3 md:mb-0">GSTIN No</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="gstinNo" #gstinNo type="text" (keyup.Enter)="creditLimit.focus()" />
+            </div>
+          </div>
+        </p-fieldset>
+        <p-fieldset class="col-12" legend="Party Detail" [toggleable]="true">
+          <div class="field grid">
+            <label htmlFor="creditLimit" class="col-12 mb-2 md:col-3 md:mb-0">Credit Limit</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="creditLimit" #creditLimit type="text" (keyup.Enter)="creditDays.focus()" />
+            </div>
+          </div>
+          <div class="field grid">
+            <label htmlFor="creditDays" class="col-12 mb-2 md:col-3 md:mb-0">Credit Days</label>
+            <div class="col-12 md:col-9">
+              <input pInputText id="creditDays" #creditDays type="text" (keyup.Enter)="name.focus()" />
+            </div>
+          </div>
+        </p-fieldset>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton (click)="onSubmit()" icon="pi pi-check" label="Ok" styleClass="p-button-text px-4"></button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,17 @@
+{
+  "English": {
+    "City": "City",
+    "city_name": "City Name",
+    "district_id": "District",
+    "district_name": "District Name",
+    "taluka_id": "Taluka",
+    "taluka_name": "Taluka Name",
+    "in_native": "In Native",
+    "country_id": "Country",
+    "state_id": "State",
+    "is_locked": "Locked",
+    "is_deactivated": "Active",
+    "pin_code": "Pin Code"
+  },
+  "Gujarati": {}
+}

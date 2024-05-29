@@ -1,0 +1,19 @@
+::ng-deep .p-paginator {
+  justify-content: left !important;
+}
+::ng-deep .p-datatable {
+  display: grid;
+  grid-template-areas: 'tablePaginator tableHeader' 'tableWrapper tableWrapper';
+  .p-datatable-header {
+    grid-area: tableHeader;
+    border-width: 1px 1px 0 0;
+  }
+  .p-paginator {
+    grid-area: tablePaginator;
+    border-width: 1px 0 0 1px;
+    border-radius: 0;
+  }
+  .p-datatable-wrapper {
+    grid-area: tableWrapper;
+  }
+}

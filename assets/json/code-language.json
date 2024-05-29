@@ -1,0 +1,24 @@
+{
+  "English": {
+    "code_name": "Code Name",
+    "code_value": "Code Value",
+    "is_mandatory": "Mandatory",
+    "order_position": "Order",
+    "in_native": "In Native",
+    "is_locked": "Locked",
+    "is_deactivated": "Active",
+    "System Default": "System Default",
+    "is_default": "Default"
+  },
+  "Gujarati": {
+    "code_name": "કોડ નામ",
+    "code_value": "કોડ મૂલ્ય",
+    "is_mandatory": "ફરજિયાત",
+    "order_position": "ઓર્ડર",
+    "in_native": "મૂળ માં",
+    "is_locked": "લૉક",
+    "is_deactivated": "સક્રિય",
+    "System Default": "સિસ્ટમ ડિફોલ્ટ",
+    "is_default": "ડિફોલ્ટ"
+  }
+}

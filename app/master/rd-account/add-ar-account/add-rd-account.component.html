@@ -1,0 +1,978 @@
+<app-client [editId]="selectedId" (selectedClient)="clientSelected($event)"></app-client>
+<form *ngIf="showForm" (keydown.enter)="$event.preventDefault()" [formGroup]="addNewRdAccountForm" (submit)="onSubmit()">
+  <p-tabView>
+    <p-tabPanel header="Details">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="product_id" class="col-12 mb-2 md:col-4 md:mb-0"> Product Name</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="product_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="product_id"
+                name="product_id"
+                #product_id
+                #product_name_c="control"
+                (onChange)="getSelectedProductData($event)"
+                optionLabel="product_name"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Product"
+                [options]="rdProductData"></p-dropdown>
+            </div>
+            <div class="col-12"><form-errors text="Product Name" [controlRef]="product_name_c"></form-errors></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="true" pInputText id="account_no" type="text" formControlName="account_no" #account_no />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-12 mb-2 md:col-4 md:mb-0"> Is Deactivated? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Is Deactivated"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="branch_id" class="col-12 mb-2 md:col-4 md:mb-0"> Branch Name </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="branch_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="branch_id"
+                name="branch_id"
+                #branch_id
+                #branch_id_c="control"
+                optionLabel="branch_name"
+                optionValue="id"
+                [filter]="true"
+                [readonly]="rdAccountId === 0"
+                placeholder="Select Branch Name"
+                [options]="branchData"></p-dropdown>
+            </div>
+            <div class="col-12"><form-errors text="Branch Name" [controlRef]="branch_id_c"></form-errors></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="access_from_all_branch" class="col-12 mb-2 md:col-4 md:mb-0"> Access From All Branch</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="access_from_all_branch"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="access_from_all_branch"
+                name="access_from_all_branch"
+                #access_from_all_branch
+                #access_from_all_branch_c="control"
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Access From All Branch"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"><form-errors text="Branch Name" [controlRef]="access_from_all_branch_c"></form-errors></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="field_officer_id" class="col-12 mb-2 md:col-4 md:mb-0"> Field Officer Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="field_officer_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="field_officer_id"
+                name="field_officer_id"
+                #field_officer_id
+                optionLabel="text"
+                [filter]="true"
+                optionValue="value"
+                placeholder="Select Field Officer Id"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_owner_type" class="col-12 mb-2 md:col-4 md:mb-0"> Account Owner Type </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="account_owner_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="account_owner_type"
+                name="account_owner_type"
+                #account_owner_type
+                #account_owner_type_c="control"
+                optionLabel="code_value"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Account Owner Type"
+                [options]="AccOwnerType"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <form-errors text="Branch Name" [controlRef]="account_owner_type_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_access_by" class="col-12 mb-2 md:col-4 md:mb-0"> Account Access By </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="account_access_by"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="account_access_by"
+                name="account_access_by"
+                #account_access_by
+                #account_access_by_c="control"
+                optionLabel="code_value"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Account Access By"
+                [options]="AccAccessBy"></p-dropdown>
+            </div>
+            <div class="col-12"><form-errors text="Branch Name" [controlRef]="account_access_by_c"></form-errors></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="agent_id" class="col-12 mb-2 md:col-4 md:mb-0"> Agent Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="agent_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="agent_id"
+                name="agent_id"
+                #agent_id
+                #agent_id_c="control"
+                optionLabel="code_value"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Agent"
+                [options]="AccAccessBy"></p-dropdown>
+            </div>
+            <div class="col-12"><form-errors text="Branch Name" [controlRef]="agent_id_c"></form-errors></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="description" class="col-12 mb-2 md:col-4 md:mb-0">Description<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="description" type="text" formControlName="description" #description />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12">
+          <h1 class="text-sm py-2">Terms</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="start_date" class="col-12 mb-2 md:col-4 md:mb-0">Start Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="start_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="start_date"
+                name="start_date"
+                [showIcon]="true"
+                #start_date></p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="deposit_amount" class="col-12 mb-2 md:col-4 md:mb-0">Deposit Amount<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="deposit_amount" type="text" formControlName="deposit_amount" #deposit_amount />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="deposit_period" class="col-12 mb-2 md:col-4 md:mb-0">Deposit Period</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="deposit_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="deposit_period"
+                name="deposit_period"
+                #deposit_period
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Deposit Period"
+                [options]="Frequency"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="total_term" class="col-12 mb-2 md:col-4 md:mb-0">Total Terms<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="total_term" type="text" formControlName="total_term" #total_term />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="maturity_date" class="col-12 mb-2 md:col-4 md:mb-0">Maturity Date </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="maturity_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="maturity_date"
+                name="maturity_date"
+                [showIcon]="true"
+                #maturity_date></p-calendar>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="resolution_date"></form-error> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="annual_interest_rate" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Annual Interest Rate<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                [readonly]="rdAccountId === 0"
+                pInputText
+                id="annual_interest_rate"
+                type="text"
+                formControlName="annual_interest_rate"
+                #annual_interest_rate />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculation_using" class="col-12 mb-2 md:col-4 md:mb-0">Interest Calculation Using</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_calculation_using"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_calculation_using"
+                name="interest_calculation_using"
+                #interest_calculation_using
+                optionLabel="label"
+                [filter]="true"
+                optionValue="value"
+                placeholder="Select Interest Calculation Using"
+                [readonly]="rdAccountId === 0"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_balance_for_interest_calculation" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Balance For Interest Calculation<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_balance_for_interest_calculation"
+                type="text"
+                [readonly]="rdAccountId === 0"
+                formControlName="min_balance_for_interest_calculation"
+                #min_balance_for_interest_calculation />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_compounding_period" class="col-12 mb-2 md:col-4 md:mb-0">Interest Compounding Period</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_compounding_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_compounding_period"
+                name="interest_compounding_period"
+                #interest_compounding_period
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [readonly]="rdAccountId === 0"
+                placeholder="Select Interest Compounding Period"
+                [options]="interestCompoundingPeriod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_posting_period" class="col-12 mb-2 md:col-4 md:mb-0">Interest Posting Period</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_posting_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_posting_period"
+                name="interest_posting_period"
+                #interest_posting_period
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Interest Posting Period"
+                [readonly]="rdAccountId === 0"
+                [options]="interestPostingPeriod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculation_days_in_year" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Interest Calculation Days In Year</label
+            >
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_calculation_days_in_year"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_calculation_days_in_year"
+                name="interest_calculation_days_in_year"
+                #interest_calculation_days_in_year
+                optionLabel="otherLabel"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Interest Calculation Days In Year"
+                [readonly]="rdAccountId === 0"
+                [options]="daysInYear"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deposit_mandatory" class="col-12 mb-2 md:col-4 md:mb-0">Is Deposit Mandatory</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deposit_mandatory"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deposit_mandatory"
+                name="is_deposit_mandatory"
+                #is_deposit_mandatory
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Is Deposit Mandatory"
+                [readonly]="rdAccountId === 0"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="withdrawal_policy" class="col-12 mb-2 md:col-4 md:mb-0">Withdrawal Policy </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="withdrawal_policy"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="withdrawal_policy"
+                name="withdrawal_policy"
+                #withdrawal_policy
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Withdrawal Policy"
+                [readonly]="rdAccountId === 0"
+                [options]="RDWithdrawal"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="adjust_advance_to_future_payments" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Adjust Advance To Future Payments</label
+            >
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="adjust_advance_to_future_payments"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="adjust_advance_to_future_payments"
+                name="adjust_advance_to_future_payments"
+                #adjust_advance_to_future_payments
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Adjust Advance To Future Payments"
+                [readonly]="rdAccountId === 0"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="max_installment_credited" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Max Installment Credited<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="max_installment_credited"
+                type="text"
+                [readonly]="rdAccountId === 0"
+                formControlName="max_installment_credited"
+                #max_installment_credited />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="lockin_period_frequency" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Lockin Period Frequency<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="lockin_period_frequency"
+                type="text"
+                [readonly]="rdAccountId === 0"
+                formControlName="lockin_period_frequency"
+                #lockin_period_frequency />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="lockin_period_frequency_type" class="col-12 mb-2 md:col-4 md:mb-0">Lockin Period Frequency Type</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="lockin_period_frequency_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="lockin_period_frequency_type"
+                name="lockin_period_frequency_type"
+                #lockin_period_frequency_type
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Lockin Period Frequency Type"
+                [readonly]="rdAccountId === 0"
+                [options]="Frequency"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="pre_mature_penal_interest" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Pre Mature Penal Interest<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="pre_mature_penal_interest"
+                type="text"
+                [readonly]="rdAccountId === 0"
+                formControlName="pre_mature_penal_interest"
+                #pre_mature_penal_interest />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="pre_mature_penal_interest_on" class="col-12 mb-2 md:col-4 md:mb-0">Pre Mature Penal Interest On </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="pre_mature_penal_interest_on"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="pre_mature_penal_interest_on"
+                name="pre_mature_penal_interest_on"
+                #is_deactivated
+                optionLabel="label"
+                optionValue="value"
+                [readonly]="rdAccountId === 0"
+                placeholder="Select Pre Mature Penal Interest"
+                [filter]="true"
+                [options]="preMaturePenalInterest"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="apply_tds" class="col-12 mb-2 md:col-4 md:mb-0">Apply Tds</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="apply_tds"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="apply_tds"
+                name="apply_tds"
+                #apply_tds
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Apply Tds "
+                [readonly]="rdAccountId === 0"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="tds_gl_account_id" class="col-12 mb-2 md:col-4 md:mb-0">Tds Gl Account Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="tds_gl_account_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="tds_gl_account_id"
+                name="tds_gl_account_id"
+                #tds_gl_account_id
+                optionLabel="account_name"
+                optionValue="id"
+                [readonly]="rdAccountId === 0"
+                placeholder="Select Tds Gl Account Id"
+                [filter]="true"
+                [options]="glAccData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Nominee Details">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Nominee Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchBy" class="col-12 mb-2 md:col-4 md:mb-0"> searchBy </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="searchBy"
+                styleClass="w-full"
+                appendTo="body"
+                name="searchBy"
+                optionValue="value"
+                optionLabel="label"
+                placeholder="Select"
+                [options]="searchBy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchValue" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+            <div class="col-12 md:col-8">
+              <input pInputText type="text" (keydown.enter)="getClientData($event.target, 1)" id="searchValue" #searchValue />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="showTable1"
+          styleClass="p-datatable-gridlines"
+          [value]="nomineeData">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td (click)="onAdd(client, 1)" width="5%">{{ rowIndex + 1 }}</td>
+              <td (click)="onAdd(client, 1)" width="30%">{{ client?.account_no }}</td>
+              <td (click)="onAdd(client, 1)" width="25%">{{ client?.account_name }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_name" class="col-12 mb-2 md:col-4 md:mb-0">Nominee Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="nominee_name" type="text" formControlName="nominee_name" #nominee_name />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address1" class="col-12 mb-2 md:col-4 md:mb-0">Address1<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address1" type="text" formControlName="address1" #address1 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address2" class="col-12 mb-2 md:col-4 md:mb-0">Address2<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address2" type="text" formControlName="address2" #address2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address3" class="col-12 mb-2 md:col-4 md:mb-0">Address3<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address3" type="text" formControlName="address3" #address3 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">Taluka<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.taluka_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">District<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.district_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">State<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.state_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address4" class="col-12 mb-2 md:col-4 md:mb-0">Address4<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address4" type="text" formControlName="address4" #address4 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="city_id" class="col-12 mb-2 md:col-4 md:mb-0">City</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="city_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="city_id"
+                name="city_id"
+                #city_id
+                optionLabel="city_name"
+                optionValue="id"
+                [filter]="true"
+                [readonly]="cannotAlter"
+                [options]="cityData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="pin_code" class="col-12 mb-2 md:col-4 md:mb-0">Pin Code<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="pin_code" type="text" formControlName="pin_code" #pin_code />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="mobile_no" class="col-12 mb-2 md:col-4 md:mb-0">Mobile No<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="mobile_no" type="text" formControlName="mobile_no" #mobile_no />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="birth_date" class="col-12 mb-2 md:col-4 md:mb-0">Birth Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="birth_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="birth_date"
+                name="birth_date"
+                [showIcon]="true"
+                [readonlyInput]="cannotAlter"
+                #birth_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="relation_id" class="col-12 mb-2 md:col-4 md:mb-0">Relation Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="relation_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="relation_id"
+                name="relation_id"
+                #relation_id
+                optionLabel="code_value"
+                [filter]="true"
+                optionValue="id"
+                [options]="RelationID"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="remarks" class="col-12 mb-2 md:col-4 md:mb-0">Remarks<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="remarks" type="text" formControlName="remarks" #remarks />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_minor" class="col-12 mb-2 md:col-4 md:mb-0">Is Minor</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_minor"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_minor"
+                name="is_minor"
+                #is_minor
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="addNewRdAccountForm.get('is_minor')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="nomination_date" class="col-12 mb-2 md:col-4 md:mb-0">Nomination Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="nomination_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nomination_date"
+                name="nomination_date"
+                [showIcon]="true"
+                #nomination_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="addNewRdAccountForm.get('is_minor')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="guardian_name" class="col-12 mb-2 md:col-4 md:mb-0">Guardian Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="guardian_name" type="text" formControlName="guardian_name" #guardian_name />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="addNewRdAccountForm.get('account_owner_type')?.value == 90" class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+    <p-tabPanel *ngIf="addNewRdAccountForm.get('account_owner_type')?.value !== 90" header="Account Holders">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Account Holders</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchBy" class="col-12 mb-2 md:col-4 md:mb-0"> searchBy </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="searchBy"
+                styleClass="w-full"
+                appendTo="body"
+                name="searchBy"
+                optionValue="value"
+                optionLabel="label"
+                placeholder="Select"
+                [options]="searchBy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchValue2" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+            <div class="col-12 md:col-8">
+              <input pInputText type="text" (keydown.enter)="getClientData($event.target, 2)" id="searchValue2" #searchValue2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">{{ DisplayData?.account_name }}</div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">{{ DisplayData?.member_type_name }}</div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">
+          City:{{ DisplayData?.city_name }} M:{{ DisplayData?.mobile_no }}
+        </div>
+        <div class="col-12"></div>
+
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="showTable2"
+          styleClass="p-datatable-gridlines"
+          [value]="accHolderData">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td (click)="onAdd(client, 2)" width="5%">{{ rowIndex + 1 }}</td>
+              <td (click)="onAdd(client, 2)" width="30%">{{ client?.account_no }}</td>
+              <td (click)="onAdd(client, 2)" width="25%">{{ client?.account_name }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="accHolderTableArray.length > 0"
+          styleClass="p-datatable-gridlines"
+          [value]="accHolderTableArray">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+              <th width="5%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ rowIndex + 1 }}</td>
+              <td width="30%">{{ client?.account_no }}</td>
+              <td width="25%">{{ client?.account_name }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(rowIndex)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+  </p-tabView>
+</form>

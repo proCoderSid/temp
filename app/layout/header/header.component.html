@@ -1,0 +1,61 @@
+<div class="grid mx-0">
+  <div class="col-fixed flex align-items-center">
+    <img src="/assets/icons/icon-128x128.png" class="w-2rem" alt="Logo" />
+    <h1 class="m-0 text-lg">{{ 'companyName' | translate }}</h1>
+  </div>
+  <div class="col-fixed flex align-items-center">
+    <p-menubar #menu [model]="items"></p-menubar>
+  </div>
+  <div class="col-fixed ml-auto my-2 px-0 align-self-center">
+    <button pButton (click)="ps.setDateFormat('dd-mm-yy')">dd-mm-yy</button>
+    <button pButton (click)="ps.setDateFormat('yy-mm-dd')">yy-mm-dd</button>
+    <p-dropdown
+      (onChange)="onLanguageChange($event)"
+      [options]="languageList"
+      [ngModel]="selectedLanguage"
+      [showClear]="false"
+      class="language-button"
+      dropdownIcon="pi pi-language"
+      optionValue="value"
+      optionLabel="key">
+    </p-dropdown>
+    <p-dropdown
+      (onChange)="onChangeLanguage($event)"
+      [options]="languageList"
+      [ngModel]="selectedTypingLanguage"
+      [showClear]="false"
+      class="language-button ml-2"
+      dropdownIcon="pi pi-globe"
+      optionValue="value"
+      optionLabel="key">
+    </p-dropdown>
+    <!-- <li>
+      <select
+        id="drpLanguage"
+        onchange="javascript:changeLanguage(this.options[this.selectedIndex].value);"
+        name="drpLanguage"
+        title="Choose Language"
+        class="big">
+        <option value="Bengali">Bengali</option>
+        <option value="Gujarati">Gujarati</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Kannada">Kannada</option>
+        <option value="Malayalam">Malayalam</option>
+        <option value="Punjabi">Punjabi</option>
+        <option value="Tamil">Tamil</option>
+        <option value="Telugu">Telugu</option>
+        <option value="English" selected="selected">English</option>
+      </select>
+    </li> -->
+  </div>
+  <div class="col-fixed pl-2 my-2">
+    <button pButton (click)="op.toggle($event)">
+      <p-avatar label="DJ" styleClass="mr-2" size="normal" shape="circle"></p-avatar>
+      <div class="flex flex-column text-left">
+        <span class="font-semibold text-sm">Doe Jones</span>
+        <!-- <span class="font-light text-sm"> Software Developer</span> -->
+      </div>
+    </button>
+  </div>
+</div>
+<p-overlayPanel #op appendTo="body"> </p-overlayPanel>

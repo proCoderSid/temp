@@ -1,0 +1,698 @@
+<app-client [editId]="selectedId" (selectedClient)="clientSelected($event)"></app-client>
+<form *ngIf="showForm" (keydown.enter)="$event.preventDefault()" [formGroup]="addNewSavingsAccountForm" (submit)="onSubmit()">
+  <p-tabView>
+    <p-tabPanel header="Details">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="product_id" class="col-12 mb-2 md:col-4 md:mb-0"> Product Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="product_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="product_id"
+                name="product_id"
+                #product_id
+                optionLabel="product_name"
+                (onChange)="getSelectedProductData($event)"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Product"
+                [options]="savingsProductData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="true" pInputText id="account_no" type="text" formControlName="account_no" #account_no />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-12 mb-2 md:col-4 md:mb-0"> Is Deactivated? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Is Deactivated"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="branch_id" class="col-12 mb-2 md:col-4 md:mb-0"> Branch Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="branch_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="branch_id"
+                name="branch_id"
+                #branch_id
+                optionLabel="branch_name"
+                optionValue="id"
+                [readonly]="savingsAccountId === 0"
+                [filter]="true"
+                placeholder="Select Branch"
+                [options]="branchData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="access_from_all_branch" class="col-12 mb-2 md:col-4 md:mb-0"> Access From All Branch</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="access_from_all_branch"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="access_from_all_branch"
+                name="access_from_all_branch"
+                #access_from_all_branch
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Access From All Branch"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="field_officer_id" class="col-12 mb-2 md:col-4 md:mb-0"> Field Officer Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="field_officer_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="field_officer_id"
+                name="field_officer_id"
+                #field_officer_id
+                optionLabel="text"
+                [filter]="true"
+                optionValue="value"
+                placeholder="Select Field Officer Id"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_owner_type" class="col-12 mb-2 md:col-4 md:mb-0"> Account Owner Type </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="account_owner_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="account_owner_type"
+                name="account_owner_type"
+                #account_owner_type
+                optionLabel="code_value"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Account Owner Type"
+                [options]="AccOwnerType"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_access_by" class="col-12 mb-2 md:col-4 md:mb-0"> Account Access By </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="account_access_by"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="account_access_by"
+                name="account_access_by"
+                #account_access_by
+                optionLabel="code_value"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Account Access By"
+                [options]="AccAccessBy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="submition_date" class="col-12 mb-2 md:col-4 md:mb-0">Submition Date </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="submition_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="submittedon_date"
+                name="submition_date"
+                [showIcon]="true"
+                #submition_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="description" class="col-12 mb-2 md:col-4 md:mb-0">Description<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="description" type="text" formControlName="description" #description />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="enforce_min_required_balance" class="col-12 mb-2 md:col-4 md:mb-0"> Enforce Min Required Balance </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="enforce_min_required_balance"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="enforce_min_required_balance"
+                name="enforce_min_required_balance"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Enforce Min Required Balance"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_required_balance" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Required Balance<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="min_required_balance" type="text" formControlName="min_required_balance" #min_required_balance />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="allow_overdraft" class="col-12 mb-2 md:col-4 md:mb-0"> Allow Overdraft </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="allow_overdraft"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="allow_overdraft"
+                name="allow_overdraft"
+                #allow_overdraft
+                optionLabel="text"
+                [filter]="true"
+                optionValue="value"
+                placeholder="Select Allow Overdraft"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="addNewSavingsAccountForm.get('allow_overdraft')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdraft_limit" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdraft Limit<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="overdraft_limit" type="text" formControlName="overdraft_limit" #overdraft_limit />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="addNewSavingsAccountForm.get('allow_overdraft')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="annual_interest_rate_overdraft" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Annual Interest Rate Overdraft<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="annual_interest_rate_overdraft"
+                type="text"
+                formControlName="annual_interest_rate_overdraft"
+                #annual_interest_rate_overdraft />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="addNewSavingsAccountForm.get('allow_overdraft')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="min_overdraft_for_interest_calculation" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Min Overdraft For Interest Calculation<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="min_overdraft_for_interest_calculation"
+                type="text"
+                formControlName="min_overdraft_for_interest_calculation"
+                #min_overdraft_for_interest_calculation />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="apply_tds" class="col-12 mb-2 md:col-4 md:mb-0"> Apply Tds </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="apply_tds"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="apply_tds"
+                name="apply_tds"
+                #apply_tds
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                placeholder="Select Apply Tds"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="addNewSavingsAccountForm.get('apply_tds')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="tds_gl_account_id" class="col-12 mb-2 md:col-4 md:mb-0"> Tds Gl Account Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="tds_gl_account_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="tds_gl_account_id"
+                name="tds_gl_account_id"
+                #is_deactivated
+                optionLabel="account_name"
+                optionValue="id"
+                [filter]="true"
+                placeholder="Select Tds Gl Account Id"
+                [options]="glAccData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div></div
+    ></p-tabPanel>
+    <p-tabPanel header="Nominee Details">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Nominee Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchBy" class="col-12 mb-2 md:col-4 md:mb-0"> searchBy </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="searchBy"
+                styleClass="w-full"
+                appendTo="body"
+                name="searchBy"
+                optionValue="value"
+                optionLabel="label"
+                placeholder="Select"
+                [options]="searchBy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchValue" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+            <div class="col-12 md:col-8">
+              <input pInputText type="text" (keydown.enter)="getClientData($event.target, 1)" id="searchValue" #searchValue />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="showTable1"
+          styleClass="p-datatable-gridlines"
+          [value]="nomineeData">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td (click)="onAdd(client, 1)" width="5%">{{ rowIndex + 1 }}</td>
+              <td (click)="onAdd(client, 1)" width="30%">{{ client?.account_no }}</td>
+              <td (click)="onAdd(client, 1)" width="25%">{{ client?.account_name }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_name" class="col-12 mb-2 md:col-4 md:mb-0">Nominee Name<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="nominee_name" type="text" formControlName="nominee_name" #nominee_name />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address1" class="col-12 mb-2 md:col-4 md:mb-0">Address1<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address1" type="text" formControlName="address1" #address1 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address2" class="col-12 mb-2 md:col-4 md:mb-0">Address2<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address2" type="text" formControlName="address2" #address2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address3" class="col-12 mb-2 md:col-4 md:mb-0">Address3<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address3" type="text" formControlName="address3" #address3 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">Taluka<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.taluka_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">District<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.district_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="labelData && labelData !== undefined && labelData.state_name !== undefined" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="Taluka" class="col-12 mb-2 md:col-4 md:mb-0">State<span class="text-red-500"></span> </label>
+            <div class="col-12 md:col-8">
+              <input readonly pInputText id="Taluka" type="text" [value]="labelData.state_name" />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="address4" class="col-12 mb-2 md:col-4 md:mb-0">Address4<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="address4" type="text" formControlName="address4" #address4 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="city_id" class="col-12 mb-2 md:col-4 md:mb-0">City</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="city_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="city_id"
+                name="city_id"
+                #city_id
+                optionLabel="city_name"
+                optionValue="id"
+                [filter]="true"
+                [readonly]="cannotAlter"
+                [options]="cityData"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="pin_code" class="col-12 mb-2 md:col-4 md:mb-0">Pin Code<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="pin_code" type="text" formControlName="pin_code" #pin_code />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="mobile_no" class="col-12 mb-2 md:col-4 md:mb-0">Mobile No<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input [readonly]="cannotAlter" pInputText id="mobile_no" type="text" formControlName="mobile_no" #mobile_no />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="birth_date" class="col-12 mb-2 md:col-4 md:mb-0">Birth Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="birth_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="birth_date"
+                name="birth_date"
+                [showIcon]="true"
+                [readonlyInput]="cannotAlter"
+                #birth_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="relation_id" class="col-12 mb-2 md:col-4 md:mb-0">Relation Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="relation_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="relation_id"
+                name="relation_id"
+                #relation_id
+                optionLabel="code_value"
+                [filter]="true"
+                optionValue="id"
+                [options]="RelationID"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="remarks" class="col-12 mb-2 md:col-4 md:mb-0">Remarks<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="remarks" type="text" formControlName="remarks" #remarks />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_minor" class="col-12 mb-2 md:col-4 md:mb-0">Is Minor</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_minor"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_minor"
+                name="is_minor"
+                #is_minor
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="addNewSavingsAccountForm.get('is_minor')?.value == 1" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="nomination_date" class="col-12 mb-2 md:col-4 md:mb-0">Nomination Date</label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="nomination_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nomination_date"
+                name="nomination_date"
+                [showIcon]="true"
+                #nomination_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div *ngIf="umang" class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="guardian_name" class="col-12 mb-2 md:col-4 md:mb-0">Guardian Name<span class="text-red-500">*</span> </label>
+            <div *ngIf="addNewSavingsAccountForm.get('account_owner_type')?.value == 90" class="col-12 md:col-8">
+              <input pInputText id="guardian_name" type="text" formControlName="guardian_name" #guardian_name />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+    <p-tabPanel *ngIf="addNewSavingsAccountForm.get('account_owner_type')?.value !== 90" header="Account Holders">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Account Holders</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchBy" class="col-12 mb-2 md:col-4 md:mb-0"> searchBy </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="searchBy"
+                styleClass="w-full"
+                appendTo="body"
+                name="searchBy"
+                optionValue="value"
+                optionLabel="label"
+                placeholder="Select"
+                [options]="searchBy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="searchValue2" class="col-12 mb-2 md:col-4 md:mb-0">searchValue</label>
+            <div class="col-12 md:col-8">
+              <input pInputText type="text" (keydown.enter)="getClientData($event.target, 2)" id="searchValue2" #searchValue2 />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">{{ DisplayData?.account_name }}</div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">{{ DisplayData?.member_type_name }}</div>
+        <div class="col-12"></div>
+        <div *ngIf="DisplayData != null" class="col-12 sm:col-6 md:col-4">
+          City:{{ DisplayData?.city_name }} M:{{ DisplayData?.mobile_no }}
+        </div>
+        <div class="col-12"></div>
+
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="showTable2"
+          styleClass="p-datatable-gridlines"
+          [value]="accHolderData">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td (click)="onAdd(client, 2)" width="5%">{{ rowIndex + 1 }}</td>
+              <td (click)="onAdd(client, 2)" width="30%">{{ client?.account_no }}</td>
+              <td (click)="onAdd(client, 2)" width="25%">{{ client?.account_name }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p-table
+          [tableStyle]="{ width: '96vw', padding: '1rem' }"
+          *ngIf="accHolderTableArray.length > 0"
+          styleClass="p-datatable-gridlines"
+          [value]="accHolderTableArray">
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="5%">Sr.No</th>
+              <th width="30%">Account No.</th>
+              <th width="25%">Name</th>
+              <th width="5%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+            <tr>
+              <td width="5%">{{ rowIndex + 1 }}</td>
+              <td width="30%">{{ client?.account_no }}</td>
+              <td width="25%">{{ client?.account_name }}</td>
+              <td>
+                <p-button
+                  (click)="onDelete(rowIndex)"
+                  type="button"
+                  styleClass="p-button-sm p-button-danger ml-3"
+                  [icon]="'pi pi-trash'"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+  </p-tabView>
+</form>

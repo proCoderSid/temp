@@ -1,0 +1,230 @@
+@import './variables';
+
+html,
+body {
+  margin: 0 !important;
+  font-family: var(--pro-font-family);
+  min-width: 1360px;
+}
+
+@each $color, $value in $theme-labels {
+  .bg-#{$color} {
+    background-color: var(--pro-color-#{$color}) !important;
+  }
+}
+
+.grid {
+  margin-top: 0;
+}
+
+.grid > .col,
+.grid > [class*='col'] {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+h1 {
+  font-size: 1.625rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+h3 {
+  font-size: 1.375rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+h4 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+h5 {
+  font-size: 1.125rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+h6 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+p {
+  font-size: 0.875rem;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
+}
+
+.field {
+  margin-bottom: 0.5rem;
+}
+
+.field > label {
+  font-size: 0.875rem;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+  line-height: 1.15;
+}
+
+.badge {
+  padding: 3px 5px;
+  border-radius: 6px;
+}
+
+.p-inputtext {
+  width: 100%;
+  &:focus {
+    background-color: #b9ffb9;
+  }
+}
+
+p-inputnumber,
+.p-inputnumber {
+  width: 100%;
+}
+
+.p-datatable {
+  font-size: 1rem;
+  .p-datatable-tbody tr:focus {
+    outline: 0.15rem solid var(--pro-color-primary-tint);
+    outline-offset: -0.15rem;
+    td {
+      background: rgba(vaR(--pro-color-primary), 0.1);
+    }
+  }
+}
+
+.p-calendar-w-btn .p-datepicker-trigger {
+  background-color: transparent;
+  color: var(--pro-color-primary-tint);
+}
+
+.p-tabview {
+  .p-tabview-nav {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    li {
+      .p-tabview-nav-link {
+        border-radius: 0;
+      }
+      &:first-child .p-tabview-nav-link {
+        border-left: 0;
+        border-top-left-radius: 4px;
+      }
+    }
+    .p-tabview-nav-link:not(.p-disabled):focus,
+    .p-tabview-nav-link:not(.p-disabled):hover {
+      border-top-right-radius: 0;
+      box-shadow: none;
+    }
+  }
+  .p-tabview-panels {
+    border-top: 0;
+  }
+}
+.p-calendar timesicon.p-icon-wrapper {
+  position: relative;
+  .p-calendar-clear-icon {
+    margin: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.dropdown-table {
+  .p-dropdown-items,
+  .p-dropdown-item {
+    padding: 0;
+  }
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 'dropdownTableFilter' 'dropdownTableHeader' 'dropdownTableContent' 'dropdownTableFooter';
+
+  .dropdown-table-list {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    td {
+      padding: 0.25rem;
+      border: 1px solid var(--surface-100);
+      border-bottom: 0;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+  }
+
+  .p-dropdown-header {
+    grid-area: dropdownTableFilter;
+    padding: 0.5rem;
+  }
+  .dropdownTableHeader {
+    grid-area: dropdownTableHeader;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    width: 100%;
+    overflow-y: scroll;
+    td {
+      background-color: var(--surface-50);
+      font-weight: 700;
+    }
+  }
+  .p-dropdown-items-wrapper {
+    grid-area: dropdownTableContent;
+    padding: 0 0.5rem;
+    .p-dropdown-items p-dropdownitem:last-child table {
+      border-bottom: 1px solid var(--surface-100);
+    }
+  }
+  .dropdownTableFooter {
+    grid-area: dropdownTableFooter;
+  }
+}
+.no-scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  outline: 1px solid transparent;
+}
+
+.p-inputwrapper.ng-invalid.ng-touched {
+  .p-dropdown,
+  .p-inputnumber-input {
+    border-color: var(--error-color);
+  }
+}
+
+.page-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+
+.tabview-right-save-btn ul.p-tabview-nav li:nth-last-child(2) {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 0.875rem;
+  .p-tabview-nav-link {
+    padding: 0;
+    pointer-events: none;
+    .form-save-btn {
+      pointer-events: all;
+    }
+  }
+}

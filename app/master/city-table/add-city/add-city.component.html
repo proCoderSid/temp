@@ -1,0 +1,158 @@
+<form [formGroup]="cityForm">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="name" class="col-12 mb-2 md:col-3 md:mb-0">City Name</label>
+        <div class="col-12 md:col-9">
+          <input #city_name_c="control" pInputText id="name" type="text" formControlName="city_name" name [autofocus]="true" />
+        </div>
+        <div class="col-12"><form-errors text="City Name" [controlRef]="city_name_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="name" class="col-12 mb-2 md:col-3 md:mb-0">Native Name</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="name" type="text" formControlName="in_native" name [autofocus]="true" #in_native_c="control" />
+        </div>
+        <div class="col-12"><form-errors text="Native Name" [controlRef]="in_native_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="name" class="col-12 mb-2 md:col-3 md:mb-0">Pin Code</label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="name" type="text" formControlName="pin_code" name [autofocus]="true" #pin_code_c="control" />
+        </div>
+        <div class="col-12"><form-errors text="Pin Code" [controlRef]="pin_code_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-3 md:mb-0">Country</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="country_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="country_id"
+            name="country_id"
+            optionValue="id"
+            optionLabel="country_name"
+            placeholder="Select Country"
+            [filter]="true"
+            (onChange)="countryChanged($event)"
+            [options]="countryList"
+            #country_id_c="control"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Country" [controlRef]="country_id_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-3 md:mb-0">State</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="state_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="state_id"
+            name="state_id"
+            optionValue="id"
+            optionLabel="state_name"
+            placeholder="Select State"
+            [filter]="true"
+            (onChange)="stateChanged($event)"
+            [options]="stateList"
+            #state_id_c="control"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="State" [controlRef]="state_id_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-3 md:mb-0">District</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="district_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="district_id"
+            name="district_id"
+            optionValue="id"
+            optionLabel="district_name"
+            placeholder="Select District"
+            (onChange)="districtChanged($event)"
+            [filter]="true"
+            [options]="districtList"
+            #district_id_c="control"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="District" [controlRef]="district_id_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-3 md:mb-0">Taluka</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="taluka_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="taluka_id"
+            name="taluka_id"
+            optionValue="id"
+            optionLabel="taluka_name"
+            placeholder="Select Taluka"
+            [filter]="true"
+            [options]="talukaList"
+            #taluka_id_c="control"></p-dropdown>
+        </div>
+        <div class="col-12"><form-errors text="Taluka" [controlRef]="taluka_id_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="active" class="col-12 mb-2 md:col-3 md:mb-0">Active</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_deactivated"
+            name="is_deactivated"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="inverseStatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="locked" class="col-12 mb-2 md:col-3 md:mb-0">Locked</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_locked"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_locked"
+            name="is_locked"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button pButton (click)="onSubmit()" icon="pi pi-check" label="SAVE" class="px-4"></button>
+    </div>
+  </div>
+</form>

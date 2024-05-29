@@ -1,0 +1,68 @@
+<form [formGroup]="addNewCodeForm" (submit)="onSubmit()">
+  <div class="grid">
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="code_name" class="col-12 mb-2 md:col-3 md:mb-0"> Code Name <span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-9">
+          <input pInputText id="code_name" type="text" formControlName="code_name" #test_c="control" [autofocus]="true" [required]="true" />
+        </div>
+        <div class="col-12"><form-errors text="Code Name" [controlRef]="test_c"></form-errors></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="alias" class="col-12 mb-2 md:col-3 md:mb-0">Active</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_deactivated"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_deactivated"
+            name="is_deactivated"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="inverseStatusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="groupName" class="col-12 mb-2 md:col-3 md:mb-0">Mandatory</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_mandatory"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_mandatory"
+            name="is_mandatory"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="field grid">
+        <label htmlFor="groupName" class="col-12 mb-2 md:col-3 md:mb-0">Mandatory</label>
+        <div class="col-12 md:col-9">
+          <p-dropdown
+            id="is_locked"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="is_locked"
+            name="is_locked"
+            optionValue="value"
+            optionLabel="text"
+            [filter]="true"
+            [options]="statusList"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button pButton type="submit" icon="pi pi-check" label="Save" class="px-4 mx-0"></button>
+    </div>
+  </div>
+</form>

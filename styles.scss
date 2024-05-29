@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --pro-banner-height: 0px;
+  --pro-header-height: 0px;
+  --pro-breadcrumb-height: 0px;
+  --pro-sidebar-width: 0px;
+  --pro-footer-height: 0px;
+
+  --font-family-sans-serif: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --pro-font-family: var(--font-family-sans-serif), var(--font-family-monospace);
+
+  --pro-color-primary: #006699;
+  --pro-color-primary-rgb: 0, 102, 153;
+  --pro-color-primary-contrast: #ffffff;
+  --pro-color-primary-contrast-rgb: 255, 255, 255;
+  --pro-color-primary-shade: #005a87;
+  --pro-color-primary-tint: #1a75a3;
+
+  --pro-color-secondary: #33b194;
+  --pro-color-secondary-rgb: 51, 177, 148;
+  --pro-color-secondary-contrast: #ffffff;
+  --pro-color-secondary-contrast-rgb: 255, 255, 255;
+  --pro-color-secondary-shade: #288a73;
+  --pro-color-secondary-tint: #37dcb6;
+
+  --pro-color-tertiary: #f7a848;
+  --pro-color-tertiary-rgb: 247, 168, 72;
+  --pro-color-tertiary-contrast: #ffffff;
+  --pro-color-tertiary-contrast-rgb: 255, 255, 255;
+  --pro-color-tertiary-shade: #f69723;
+  --pro-color-tertiary-tint: #f9ba6c;
+
+  --pro-color-success: #2dd36f;
+  --pro-color-success-rgb: 45, 211, 111;
+  --pro-color-success-contrast: #ffffff;
+  --pro-color-success-contrast-rgb: 255, 255, 255;
+  --pro-color-success-shade: #28ba62;
+  --pro-color-success-tint: #42d77d;
+  --pro-color-success-background: #d1f5df;
+
+  --pro-color-warning: #f17800;
+  --pro-color-warning-rgb: 241, 120, 0;
+  --pro-color-warning-contrast: #000000;
+  --pro-color-warning-contrast-rgb: 0, 0, 0;
+  --pro-color-warning-shade: #d46a00;
+  --pro-color-warning-tint: #f2861a;
+
+  --pro-color-danger: #e3483c;
+  --pro-color-danger-rgb: 227, 72, 60;
+  --pro-color-danger-contrast: #ffffff;
+  --pro-color-danger-contrast-rgb: 255, 255, 255;
+  --pro-color-danger-shade: #df2d20;
+  --pro-color-danger-tint: #e96c63;
+
+  --pro-color-info: #3b5998;
+  --pro-color-info-rgb: 59, 89, 152;
+  --pro-color-info-contrast: #ffffff;
+  --pro-color-info-contrast-rgb: 255, 255, 255;
+  --pro-color-info-shade: #344e86;
+  --pro-color-info-tint: #4f6aa2;
+
+  --pro-color-dark: #222428;
+  --pro-color-dark-rgb: 34, 36, 40;
+  --pro-color-dark-contrast: #ffffff;
+  --pro-color-dark-contrast-rgb: 255, 255, 255;
+  --pro-color-dark-shade: #1e2023;
+  --pro-color-dark-tint: #383a3e;
+
+  --pro-color-medium: #707070;
+  --pro-color-medium-rgb: 146, 148, 156;
+  --pro-color-medium-contrast: #ffffff;
+  --pro-color-medium-contrast-rgb: 255, 255, 255;
+  --pro-color-medium-shade: #4d4d4d;
+  --pro-color-medium-tint: #a6a6a6;
+
+  --pro-color-light: #f4f5f8;
+  --pro-color-light-rgb: 244, 245, 248;
+  --pro-color-light-contrast: #000000;
+  --pro-color-light-contrast-rgb: 0, 0, 0;
+  --pro-color-light-shade: #d7d8da;
+  --pro-color-light-tint: #f5f6f9;
+
+  --pro-color-white: #ffffff;
+  --pro-color-white-rgb: 244, 245, 248;
+  --pro-color-white-contrast: #000000;
+  --pro-color-white-contrast-rgb: 0, 0, 0;
+  --pro-color-white-shade: #d7d8da;
+  --pro-color-white-tint: #f5f6f9;
+}
+
+/* PrimeNG */
+@import 'primeng/resources/primeng.min.css';
+
+/* Primeflex */
+$gutter: 0.875rem;
+@import 'primeflex/primeflex.scss';
+
+/* Quill Text Editor for p-editor */
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.snow.css';
+
+/* Icons */
+@import 'primeicons/primeicons.css';
+@import 'material-icons/iconfont/material-icons.css';
+
+@import './assets/scss/theme/theme.scss';
+
+@import './assets/scss/main.scss';

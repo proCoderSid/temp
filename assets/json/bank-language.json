@@ -1,0 +1,22 @@
+{
+  "English": {
+    "bank_name": "Bank Name",
+    "branch_name": "Branch Name",
+    "bank_address": "Address",
+    "bank_ifsc": "IFSC",
+    "bank_iban": "IBAN",
+    "is_locked": "Locked",
+    "is_deactivated": "Active",
+    "bank_swift": "SWIFT"
+  },
+  "Gujarati": {
+    "bank_name": "ડેમો",
+    "branch_name": "ડેમો",
+    "bank_address": "ડેમો",
+    "bank_ifsc": "ડેમો",
+    "bank_iban": "ડેમો",
+    "is_locked": "ડેમો",
+    "is_deactivated": "ડેમો",
+    "bank_swift": "ડેમો"
+  }
+}

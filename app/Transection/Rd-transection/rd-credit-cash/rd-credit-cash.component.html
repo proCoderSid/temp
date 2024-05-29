@@ -1,0 +1,140 @@
+<form [formGroup]="addNewCreditCashForm" (submit)="onSubmit(addNewCreditCashForm)">
+  <app-client [formType]="'RDAcc'" [editId]="selectedId" (selectedClient)="clientSelected($event)"></app-client>
+  <div class="grid">
+    <div class="col-12">
+      <h1 class="text-sm py-2">Credit Cash Form</h1>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="date1" class="col-12 mb-2 md:col-4 md:mb-0"> Issue Date</label>
+        <div class="col-12 md:col-8">
+          <p-calendar
+            appDateFormat
+            id="date1"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="date1"
+            name="date1"
+            [showIcon]="true"
+            [required]="true"
+            #date1></p-calendar>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="cr_amount" class="col-12 mb-2 md:col-4 md:mb-0"> CR Amount</label>
+        <div class="col-12 md:col-8">
+          <p-inputNumber [useGrouping]="false" id="cr_amount" formControlName="cr_amount" name="cr_amount" #cr_amount></p-inputNumber>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="instrument_id" class="col-12 mb-2 md:col-4 md:mb-0">Instrument Id</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="instrument_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="instrument_id"
+            name="instrument_id"
+            #instrument_id
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+          <!-- <form-error text="Code Name" [model]="instrument_id"></form-error> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="rd_account_id" class="col-12 mb-2 md:col-4 md:mb-0">GL Account Id</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+            id="rd_account_id"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="rd_account_id"
+            name="rd_account_id"
+            #rd_account_id
+            optionLabel="text"
+            optionValue="value"
+            [filter]="true"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+          <!-- <form-error text="Code Name" [model]="rd_account_id"></form-error> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="cheque_number" class="col-12 mb-2 md:col-4 md:mb-0">Cheque Number</label>
+        <div class="col-12 md:col-8">
+          <p-inputNumber
+            [useGrouping]="false"
+            id="cheque_number"
+            formControlName="cheque_number"
+            name="cheque_number"
+            #cheque_number></p-inputNumber>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="cheque_date" class="col-12 mb-2 md:col-4 md:mb-0">Cheque Date</label>
+        <div class="col-12 md:col-8">
+          <p-calendar
+            appDateFormat
+            id="cheque_date"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="cheque_date"
+            name="cheque_date"
+            [showIcon]="true"
+            [required]="true"
+            #cheque_date></p-calendar>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="receipt_number" class="col-12 mb-2 md:col-4 md:mb-0"> Receipt Number </label>
+        <div class="col-12 md:col-8">
+          <p-inputNumber
+            [useGrouping]="false"
+            id="receipt_number"
+            formControlName="receipt_number"
+            name="receipt_number"
+            #receipt_number></p-inputNumber>
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="remarks" class="col-12 mb-2 md:col-4 md:mb-0"> Remarks </label>
+        <div class="col-12 md:col-8">
+          <input pInputText id="remarks" type="text" formControlName="remarks" #remarks />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button>
+    </div>
+  </div>
+</form>

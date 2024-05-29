@@ -1,0 +1,1291 @@
+<form [formGroup]="addNewCIFForm" (submit)="onSubmit()">
+  <p-tabView class="tabview-right-save-btn">
+    <p-tabPanel header="General Details">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">General Details</h1>
+        </div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="branch_id" class="col-4 mb-0"> Branch Office <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="branch_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="branch_id"
+                name="branch_id"
+                #branch_id
+                #branch_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="branch_name"
+                optionValue="id"
+                [options]="dropdown.branchOfficeList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Branch Office" [controlRef]="branch_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="account_no" class="col-4 mb-0 pl-6"> CIF No </label>
+            <div class="col-8">
+              <p-inputNumber
+                [useGrouping]="false"
+                id="account_no"
+                formControlName="account_no"
+                name="account_no"
+                #account_no_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="CIF No" [controlRef]="account_no_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-4 mb-0 pl-6"> Freeze </label>
+            <div class="col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated_c="control"
+                optionLabel="text"
+                optionValue="value"
+                [options]="dropdown.yesNoList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Freeze" [controlRef]="is_deactivated_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="member_type_id" class="col-4 mb-0"> Member Type<span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="member_type_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="member_type_id"
+                name="member_type_id"
+                #member_type_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.memberTypeList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Member Type" [controlRef]="member_type_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="join_date" class="col-4 mb-0 pl-6"> Join Date<span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="join_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="join_date"
+                #join_date_c="control"
+                name="join_date"
+                [showIcon]="true"
+                [required]="true"
+                #join_date></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Join Date" [controlRef]="join_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="title" class="col-4 mb-0">Title<span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="title"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="title"
+                name="title"
+                #title_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.titleList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Title" [controlRef]="title_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="first_name" class="col-4 mb-0"> First Name <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input pInputText id="first_name" type="text" formControlName="first_name" #first_name_c="control" [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="First Name" [controlRef]="first_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="middle_name" class="col-4 mb-0 pl-6"> Middle Name <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input
+                pInputText
+                appInputLang
+                id="middle_name"
+                type="text"
+                formControlName="middle_name"
+                #middle_name_c="control"
+                [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Middle Name" [controlRef]="middle_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="last_name" class="col-4 mb-0 pl-6"> Last Name <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input pInputText id="last_name" type="text" formControlName="last_name" #last_name_c="control" [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Last Name" [controlRef]="last_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="in_native" class="col-2 mb-0"> In Native </label>
+            <div class="col-10">
+              <input pInputText id="in_native" type="text" class="input_language" formControlName="in_native" #in_native_c="control" />
+            </div>
+            <div class="col-10 col-offset-2">
+              <form-errors text="In Native" [controlRef]="in_native_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="resolution_no" class="col-4 mb-0"> Resolution No </label>
+            <div class="col-8">
+              <input pInputText id="resolution_no" type="text" formControlName="resolution_no" #resolution_no_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Resolution No" [controlRef]="resolution_no_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="resolution_date" class="col-4 mb-0 pl-6"> Resolution Date </label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="resolution_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="resolution_date"
+                #resolution_date_c="control"
+                name="resolution_date"
+                [showIcon]="true"
+                #resolution_date></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Resolution Date" [controlRef]="resolution_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="father_spouse_name" class="col-2 mb-0"> Father/Spouse Name </label>
+            <div class="col-10">
+              <input pInputText id="father_spouse_name" type="text" formControlName="father_spouse_name" #father_spouse_name_c="control" />
+            </div>
+            <div class="col-10 col-offset-2">
+              <form-errors text="Father/Spouse Name" [controlRef]="father_spouse_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="relation_name" class="col-4 mb-0 pl-6">Relation</label>
+            <div class="col-8">
+              <p-dropdown
+                id="relation_name"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="relation_name"
+                name="relation_name"
+                #relation_name_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="label"
+                optionValue="value"
+                [options]="dropdown.fatherOrSpouseList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Relation" [controlRef]="relation_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="mother_name" class="col-2 mb-0"> Mother Name </label>
+            <div class="col-10">
+              <input pInputText id="mother_name" type="text" formControlName="mother_name" #mother_name_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Mother Name" [controlRef]="mother_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Personal Information">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Personal Information</h1>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="gender_id" class="col-4 mb-0">Gender</label>
+            <div class="col-8">
+              <p-dropdown
+                id="gender_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="gender_id"
+                name="gender_id"
+                #gender_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.genderList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Gender" [controlRef]="gender_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="caste_id" class="col-4 mb-0 pl-6">Caste</label>
+            <div class="col-8">
+              <p-dropdown
+                id="caste_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="caste_id"
+                name="caste_id"
+                #caste_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.casteList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Caste" [controlRef]="caste_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="sub_caste_id" class="col-4 mb-0 pl-6">Sub caste</label>
+            <div class="col-8">
+              <p-dropdown
+                id="sub_caste_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="sub_caste_id"
+                name="sub_caste_id"
+                #sub_caste_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.subCasteList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Branch" [controlRef]="sub_caste_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="birth_date" class="col-4 mb-0"> Birth Date </label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="birth_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="birth_date"
+                #birth_date_c="control"
+                name="birth_date"
+                [showIcon]="true"></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Birth Date" [controlRef]="birth_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="marital_status_id" class="col-4 mb-0 pl-6">Marital Status</label>
+            <div class="col-8">
+              <p-dropdown
+                id="marital_status_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="marital_status_id"
+                name="marital_status_id"
+                #marital_status_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.maritalStatusList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Marital Status" [controlRef]="marital_status_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="business" class="col-4 mb-0"> Business <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input pInputText id="business" type="text" formControlName="business" #business_c="control" [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Business" [controlRef]="business_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="education" class="col-4 mb-0 pl-6"> Education <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input pInputText id="education" type="text" formControlName="education" #education_c="control" [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Education" [controlRef]="education_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="employee_no" class="col-4 mb-0"> Employee No <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <input pInputText id="employee_no" type="text" formControlName="employee_no" #employee_no_c="control" [required]="true" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Employee No" [controlRef]="employee_no_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="retired_date" class="col-4 mb-0 pl-6"> Retired Date </label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="retired_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="retired_date"
+                #retired_date_c="control"
+                name="retired_date"
+                [showIcon]="true"></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Retired Date" [controlRef]="retired_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="remarks" class="col-2 mb-0">CIF Remarks </label>
+            <div class="col-10">
+              <input pInputText id="remarks" type="text" formControlName="remarks" #remarks_c="control" [required]="true" />
+            </div>
+            <div class="col-10 col-offset-2">
+              <form-errors text="CIF Remarks" [controlRef]="remarks_c"></form-errors>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Address/Banking Information">
+      <div class="grid">
+        <div class="col-9">
+          <h1 class="text-sm py-2">Address Information</h1>
+        </div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="address1" class="col-4 mb-0"> Address 1 </label>
+            <div class="col-8">
+              <input pInputText id="address1" type="text" formControlName="address1" #address1_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 1" [controlRef]="address1_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="address2" class="col-4 mb-0"> Address 2 </label>
+            <div class="col-8">
+              <input pInputText id="address2" type="text" formControlName="address2" #address2_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 2" [controlRef]="address2_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="address3" class="col-4 mb-0"> Address 3 </label>
+            <div class="col-8">
+              <input pInputText id="address3" type="text" formControlName="address3" #address3_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 3" [controlRef]="address3_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="address4" class="col-4 mb-0"> Address 4 </label>
+            <div class="col-8">
+              <input pInputText id="address4" type="text" formControlName="address4" #address4_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 4" [controlRef]="address4_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="city_id" class="col-4 mb-0"> City <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="city_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="city_id"
+                #city_id
+                #city_id_c="control"
+                name="city_id"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                filterBy="city_name,district_name,taluka_name"
+                optionLabel="city_name"
+                optionValue="id"
+                [options]="dropdown.cityList"
+                [panelStyle]="{ width: '400px' }"
+                [resetFilterOnHide]="true"
+                panelStyleClass="dropdown-table">
+                <ng-template let-header pTemplate="header" let-index="index">
+                  <div class="dropdownTableHeader no-scrollbar">
+                    <table class="dropdown-table-list">
+                      <tr>
+                        <td>City</td>
+                        <td>District</td>
+                        <td>Taluka</td>
+                      </tr>
+                    </table>
+                  </div>
+                </ng-template>
+                <ng-template let-item pTemplate="item" let-index="index">
+                  <table class="dropdown-table-list">
+                    <tr
+                      (click)="onDropdownTableClick($event, city_id, item, 'click')"
+                      (dblclick)="onDropdownTableClick($event, city_id, item, 'dblclick')">
+                      <td>{{ item.city_name }}</td>
+                      <td>{{ item.district_name }}</td>
+                      <td>{{ item.taluka_name }}</td>
+                    </tr>
+                  </table>
+                </ng-template>
+                <ng-template let-footer pTemplate="footer" let-index="index">
+                  <div class="dropdownTableFooter grid gap-2 p-2 mx-0 justify-content-center">
+                    <button pButton icon="pi pi-plus" class="p-button-sm p-button-success" label="Add"></button>
+                    <button
+                      pButton
+                      icon="pi pi-cog"
+                      class="p-button-sm p-button-primary"
+                      (click)="onEditCity(city_id)"
+                      label="Edit"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger" label="Delete"></button>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="City" [controlRef]="city_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="pin_code" class="col-4 mb-0 pl-6"> Pin Code </label>
+            <div class="col-8">
+              <p-inputNumber
+                [useGrouping]="false"
+                id="pin_code"
+                formControlName="pin_code"
+                name="pin_code"
+                #pin_code_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Pin Code" [controlRef]="pin_code_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="mobile_no" class="col-4 mb-0 pl-6"> Mobile No </label>
+            <div class="col-8">
+              <p-inputNumber
+                [useGrouping]="false"
+                id="mobile_no"
+                formControlName="mobile_no"
+                name="mobile_no"
+                #mobile_no_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Mobile No" [controlRef]="mobile_no_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="phone1" class="col-4 mb-0"> Phone 1 </label>
+            <div class="col-8">
+              <p-inputNumber [useGrouping]="false" id="phone1" formControlName="phone1" name="phone1" #phone1_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Phone 1" [controlRef]="phone1_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="phone2" class="col-4 mb-0 pl-6"> Phone 2</label>
+            <div class="col-8">
+              <p-inputNumber [useGrouping]="false" id="phone2" formControlName="phone2" name="phone2" #phone2_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Phone 2" [controlRef]="phone2_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="phoneR" class="col-4 mb-0 pl-6"> Phone(R)</label>
+            <div class="col-8">
+              <p-inputNumber [useGrouping]="false" id="phoneR" formControlName="phoneR" name="phoneR" #phoneR_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Phone(R)" [controlRef]="phoneR_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="email" class="col-4 mb-0"> Email </label>
+            <div class="col-8">
+              <input pInputText id="email" type="email" formControlName="email" #email_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Email" [controlRef]="email_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="website" class="col-4 mb-0 pl-6"> Website </label>
+            <div class="col-8">
+              <input pInputText id="website" type="text" formControlName="website" #website_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Website" [controlRef]="website_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <h1 class="text-sm py-2">Bank Details</h1>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="bank_branch_id" class="col-2 mb-0"> Bank <span class="text-red-500">*</span> </label>
+            <div class="col-10">
+              <p-dropdown
+                id="bank_branch_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="bank_branch_id"
+                name="bank_branch_id"
+                #bank_branch_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="key"
+                optionValue="value"
+                [options]="dropdown.branchOfficeList"></p-dropdown>
+            </div>
+            <div class="col-10 col-offset-2">
+              <form-errors text="Bank" [controlRef]="bank_branch_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="bank_account_number" class="col-4 mb-0"> Bank A/c No</label>
+            <div class="col-8">
+              <p-inputNumber
+                id="bank_account_number"
+                formControlName="bank_account_number"
+                name="bank_account_number"
+                #bank_account_number_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Bank A/c No" [controlRef]="bank_account_number_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="bank_account_type" class="col-4 mb-0 pl-6"> A/c Type <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="bank_account_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="bank_account_type"
+                name="bank_account_type"
+                #bank_account_type_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="label"
+                optionValue="value"
+                [options]="dropdown.bankAccountTypeList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="A/c Type" [controlRef]="bank_account_type_c"></form-errors>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Identification">
+      <div class="grid">
+        <div class="col-9">
+          <h1 class="text-sm py-2">Identification</h1>
+        </div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="kyc_document_id" class="col-4 mb-0"> Document Name <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="kyc_document_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="kyc_document_id"
+                name="kyc_document_id"
+                #kyc_document_id_c="control"
+                #kyc_document_idRef
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                [options]="dropdown.kycDocumentsList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Document Name" [controlRef]="kyc_document_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="kyc_number" class="col-4 mb-0"> Document Detail/No </label>
+            <div class="col-8">
+              <input
+                pInputText
+                id="kyc_number"
+                type="text"
+                formControlName="kyc_number"
+                #kyc_number_c="control"
+                [required]="kyc_document_idRef.value" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Document Detail/No" [controlRef]="kyc_number_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="kyc_issued_date" class="col-4 mb-0"> Issue Date</label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="kyc_issued_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="kyc_issued_date"
+                name="kyc_issued_date"
+                [showIcon]="true"
+                [required]="kyc_document_idRef.value"
+                #kyc_issued_date_c="control"></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Issue Date" [controlRef]="kyc_issued_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-fixed px-0">
+          <button pButton (click)="onAddIdentification()">{{ identificationRowIndex === undefined ? 'Add' : 'Edit' }}</button>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12 mb-3">
+          <p-table styleClass="p-datatable-gridlines" [value]="identificationList">
+            <ng-template pTemplate="header">
+              <tr>
+                <th width="5%">Sr.No</th>
+                <th width="30%">Name</th>
+                <th width="25%">Detail</th>
+                <th width="15%">Issue Date</th>
+                <th width="15%">Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-identification let-rowIndex="rowIndex">
+              <tr>
+                <td width="5%">{{ rowIndex + 1 }}</td>
+                <td width="30%">{{ identification?.kyc_document_name }}</td>
+                <td width="25%">{{ identification?.kyc_number }}</td>
+                <td width="15%">{{ identification?.kyc_issued_date | date: 'dd-MM-yyyy' }}</td>
+                <td width="15%">
+                  <p-button
+                    type="button"
+                    styleClass="p-button-sm ml-3"
+                    [icon]="'pi pi-wrench'"
+                    (onClick)="onEditIdentification(rowIndex, identification)"></p-button>
+                  <p-button
+                    type="button"
+                    styleClass="p-button-sm p-button-danger ml-3"
+                    [icon]="'pi pi-trash'"
+                    (onClick)="onDeleteIdentification(rowIndex)"></p-button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Relative">
+      <div class="grid">
+        <div class="col-9">
+          <h1 class="text-sm py-2">Relative</h1>
+        </div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="search_by" class="col-4 mb-0"> Search By <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="search_by"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="search_by"
+                name="search_by"
+                #search_by_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.searchByList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Search By" [controlRef]="search_by_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="search_value" class="col-2 mb-0 pl-6"> Search Value </label>
+            <div class="col-9">
+              <input pInputText id="search_value" type="text" formControlName="search_value" #search_value_c="control" />
+            </div>
+            <div class="col-9 col-offset-2">
+              <form-errors text="Search Value" [controlRef]="search_value_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="relation_id" class="col-4 mb-0"> Relation</label>
+            <div class="col-8">
+              <p-dropdown
+                id="relation_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="relation_id"
+                name="relation_id"
+                #relation_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.relativeList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Relation" [controlRef]="relation_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-fixed pl-6">
+          <button pButton (click)="onAddRelative()">{{ relativeRowIndex === undefined ? 'Add' : 'Edit' }}</button>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-12 mb-3">
+          <p-table styleClass="p-datatable-gridlines" [value]="relativeList">
+            <ng-template pTemplate="header">
+              <tr>
+                <th width="5%">Sr.No</th>
+                <th width="30%">Name</th>
+                <th width="25%">Detail</th>
+                <th width="15%">Issue Date</th>
+                <th width="15%">Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-relative let-rowIndex="rowIndex">
+              <tr>
+                <td width="5%">{{ rowIndex + 1 }}</td>
+                <td width="30%">{{ relative?.search_by }}</td>
+                <td width="25%">{{ relative?.search_value }}</td>
+                <td width="15%">{{ relative?.relation_id }}</td>
+                <td width="15%">
+                  <p-button
+                    type="button"
+                    styleClass="p-button-sm ml-3"
+                    [icon]="'pi pi-wrench'"
+                    (onClick)="onEditRelative(rowIndex, relative)"></p-button>
+                  <p-button
+                    type="button"
+                    styleClass="p-button-sm p-button-danger ml-3"
+                    [icon]="'pi pi-trash'"
+                    (onClick)="onDeleteRelative(rowIndex)"></p-button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Nominee Details">
+      <div class="grid">
+        <div class="col-9">
+          <h1 class="text-sm py-2">Nominee Detail</h1>
+        </div>
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="search_by" class="col-4 mb-0"> Search By </label>
+            <div class="col-8">
+              <p-dropdown
+                id="search_by"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="search_by"
+                name="search_by"
+                #search_by_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="key"
+                optionValue="value"
+                [options]="dropdown.searchByList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Search By" [controlRef]="search_by_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="search_value" class="col-2 mb-0 pl-6"> Search Value </label>
+            <div class="col-9">
+              <input pInputText id="search_value" type="text" formControlName="search_value" #search_value_c="control" />
+            </div>
+            <div class="col-9 col-offset-2">
+              <form-errors text="Search Value" [controlRef]="search_value_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="nominee_name" class="col-2 mb-0"> Nominee Name </label>
+            <div class="col-9">
+              <input pInputText id="nominee_name" type="text" formControlName="nominee_name" #nominee_name_c="control" />
+            </div>
+            <div class="col-9 col-offset-2">
+              <form-errors text="Nominee Name" [controlRef]="nominee_name_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_address1" class="col-4 mb-0"> Address 1 </label>
+            <div class="col-8">
+              <input pInputText id="nominee_address1" type="text" formControlName="nominee_address1" #nominee_address1_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 1" [controlRef]="nominee_address1_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_address2" class="col-4 mb-0"> Address 2 </label>
+            <div class="col-8">
+              <input pInputText id="nominee_address2" type="text" formControlName="nominee_address2" #nominee_address2_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 2" [controlRef]="nominee_address2_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_address3" class="col-4 mb-0"> Address 3 </label>
+            <div class="col-8">
+              <input pInputText id="nominee_address3" type="text" formControlName="nominee_address3" #nominee_address3_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 3" [controlRef]="nominee_address3_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_address4" class="col-4 mb-0"> Address 4 </label>
+            <div class="col-8">
+              <input pInputText id="nominee_address4" type="text" formControlName="nominee_address4" #nominee_address4_c="control" />
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Address 4" [controlRef]="nominee_address4_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_state_id" class="col-4 mb-0 pl-6"> State <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="nominee_state_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_state_id"
+                name="nominee_state_id"
+                #nominee_state_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="state_name"
+                optionValue="id"
+                [options]="dropdown.stateList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="State" [controlRef]="nominee_state_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_district_id" class="col-4 mb-0 pl-6"> District <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="nominee_district_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_district_id"
+                name="nominee_district_id"
+                #nominee_district_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="district_name"
+                optionValue="id"
+                [options]="dropdown.districtList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="District" [controlRef]="nominee_district_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_city_id" class="col-4 mb-0"> City <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="nominee_city_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_city_id"
+                name="nominee_city_id"
+                #nominee_city_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="city_name"
+                optionValue="id"
+                [options]="dropdown.cityList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="City" [controlRef]="nominee_city_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_taluka_id" class="col-4 mb-0 pl-6"> Taluka <span class="text-red-500">*</span> </label>
+            <div class="col-8">
+              <p-dropdown
+                id="nominee_taluka_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_taluka_id"
+                name="nominee_taluka_id"
+                #nominee_taluka_id_c="control"
+                [required]="true"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="taluka_name"
+                optionValue="id"
+                [options]="dropdown.talukaList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Taluka" [controlRef]="nominee_taluka_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_pin_code" class="col-4 mb-0 pl-6"> Pin Code </label>
+            <div class="col-8">
+              <p-inputNumber
+                id="nominee_pin_code"
+                formControlName="nominee_pin_code"
+                name="nominee_pin_code"
+                #nominee_pin_code_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Pin Code" [controlRef]="nominee_pin_code_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_mobile_no" class="col-4 mb-0"> Mobile No </label>
+            <div class="col-8">
+              <p-inputNumber
+                id="nominee_mobile_no"
+                formControlName="nominee_mobile_no"
+                name="nominee_mobile_no"
+                #nominee_mobile_no_c="control"></p-inputNumber>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Mobile No" [controlRef]="nominee_mobile_no_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_birth_date" class="col-4 mb-0 pl-6"> Birth Date </label>
+            <div class="col-8">
+              <p-calendar
+                appDateFormat
+                id="nominee_birth_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_birth_date"
+                name="nominee_birth_date"
+                [showIcon]="true"
+                #nominee_birth_date_c="control"></p-calendar>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Birth Date" [controlRef]="nominee_birth_date_c"></form-errors>
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="nominee_relation_id" class="col-4 mb-0">Relation</label>
+            <div class="col-8">
+              <p-dropdown
+                id="nominee_relation_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="nominee_relation_id"
+                name="nominee_relation_id"
+                #nominee_relation_id_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="code_value"
+                optionValue="id"
+                [options]="dropdown.relationList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Relation" [controlRef]="nominee_relation_id_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="field grid">
+            <label htmlFor="nominee_remarks" class="col-2 mb-0 pl-6"> Remarks </label>
+            <div class="col-9">
+              <input pInputText id="nominee_remarks" type="text" formControlName="nominee_remarks" #nominee_remarks_c="control" />
+            </div>
+            <div class="col-9 col-offset-2">
+              <form-errors text="Remarks" [controlRef]="nominee_remarks_c"></form-errors>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+
+        <div class="col-4">
+          <div class="field grid">
+            <label htmlFor="is_minor" class="col-4 mb-0">Is Minor</label>
+            <div class="col-8">
+              <p-dropdown
+                id="is_minor"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_minor"
+                name="is_minor"
+                #is_minor_c="control"
+                [autoDisplayFirst]="false"
+                [filter]="true"
+                optionLabel="key"
+                optionValue="value"
+                [options]="dropdown.yesNoList"></p-dropdown>
+            </div>
+            <div class="col-8 col-offset-4">
+              <form-errors text="Is Minor" [controlRef]="is_minor_c"></form-errors>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <div class="form-save-btn" appStopPropagation>
+          <button type="submit" pButton class="p-button-sm px-3" label="Save"></button>
+        </div>
+      </ng-template>
+    </p-tabPanel>
+  </p-tabView>
+</form>

@@ -1,0 +1,181 @@
+<form [formGroup]="addNewFDReturnForm" (submit)="onSubmit(addNewFDReturnForm)">
+  <app-client [editId]="selectedId" (selectedClient)="clientSelected($event)"></app-client>
+  <div class="grid">
+    <div class="col-12">
+      <h1 class="text-sm py-2">FD WITHDRAWAL FORM</h1>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="date1" class="col-12 mb-2 md:col-4 md:mb-0">date1<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText id="date1" type="text" formControlName="date1" #date1 />
+        </div>
+        <div class="col-12">
+          <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="duration" class="col-12 mb-2 md:col-4 md:mb-0">Duration<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText id="duration" type="text" formControlName="duration" #duration />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="interest_rate" class="col-12 mb-2 md:col-4 md:mb-0">Interest Rate<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText id="interest_rate" type="text" formControlName="interest_rate" #interest_rate />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <!-- <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="auto_renewal" class="col-12 mb-2 md:col-4 md:mb-0">Auto Renewal</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+             
+            id="auto_renewal"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="auto_renewal"
+            name="auto_renewal"
+            #auto_renewal
+            optionLabel="text"
+            optionValue="value"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="auto_renewal" class="col-12 mb-2 md:col-4 md:mb-0">Auto Renewal</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+             
+            id="auto_renewal"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="auto_renewal"
+            name="auto_renewal"
+            #auto_renewal
+            optionLabel="text"
+            optionValue="value"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+        </div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="auto_renewal" class="col-12 mb-2 md:col-4 md:mb-0">Auto Renewal</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+             
+            id="auto_renewal"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="auto_renewal"
+            name="auto_renewal"
+            #auto_renewal
+            optionLabel="text"
+            optionValue="value"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="auto_renewal" class="col-12 mb-2 md:col-4 md:mb-0">Auto Renewal</label>
+        <div class="col-12 md:col-8">
+          <p-dropdown
+             
+            id="auto_renewal"
+            styleClass="w-full"
+            appendTo="body"
+            formControlName="auto_renewal"
+            name="auto_renewal"
+            #auto_renewal
+            optionLabel="text"
+            optionValue="value"
+            [options]=""></p-dropdown>
+        </div>
+        <div class="col-12">
+        </div>
+      </div>
+    </div>
+    <div class="col-12"></div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div>
+    <div class="col-12 sm:col-6 md:col-4">
+      <div class="field grid">
+        <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+        <div class="col-12 md:col-8">
+          <input pInputText  id="account_no" type="text" formControlName="account_no" #account_no />
+        </div>
+        <div class="col-12"></div>
+      </div>
+    </div> -->
+    <div class="col-12"></div>
+    <div class="col-12 text-right">
+      <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button>
+    </div>
+  </div>
+</form>

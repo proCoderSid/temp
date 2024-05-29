@@ -1,0 +1,817 @@
+<form [formGroup]="addNewLoanAccountForm" (submit)="onSubmit()">
+  <app-client [formType]="'SavAcc'" [editId]="selectedId" (selectedClient)="clientSelected($event)"></app-client>
+  <p-tabView>
+    <p-tabPanel header="Details/Terms">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Details</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="product_id" class="col-12 mb-2 md:col-4 md:mb-0"> Product Id</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="product_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="product_id"
+                name="product_id"
+                #product_id
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]=""></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="branch_id"></form-error> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="account_no" class="col-12 mb-2 md:col-4 md:mb-0">Account No<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="account_no" type="text" formControlName="account_no" #account_no />
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="is_deactivated" class="col-12 mb-2 md:col-4 md:mb-0"> Is Deactivated? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="is_deactivated"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="is_deactivated"
+                name="is_deactivated"
+                #is_deactivated
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="loan_purpose_id" class="col-12 mb-2 md:col-4 md:mb-0"> Loan Purpose Id? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="loan_purpose_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="loan_purpose_id"
+                name="loan_purpose_id"
+                #loan_purpose_id
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="loan_officer_id" class="col-12 mb-2 md:col-4 md:mb-0">Loan Officer Id? </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="loan_officer_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="loan_officer_id"
+                name="loan_officer_id"
+                #loan_officer_id
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="is_deactivated"></form-error> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="branch_id" class="col-12 mb-2 md:col-4 md:mb-0"> Branch Id </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="branch_id"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="branch_id"
+                name="branch_id"
+                #branch_id
+                optionLabel="text"
+                [filter]="true"
+                optionValue="value"
+                [options]=""></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12"></div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="submition_date" class="col-12 mb-2 md:col-4 md:mb-0">Submition Date </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="submition_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="submition_date"
+                name="submition_date"
+                [showIcon]="true"
+                #submition_date></p-calendar>
+            </div>
+            <div class="col-12">
+              <!-- <form-error text="Code Name" [model]="resolution_date"></form-error> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="description" class="col-12 mb-2 md:col-4 md:mb-0">Description<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="description" type="text" formControlName="description" #description />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Loan & Installment Settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Loan & Installment Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="principal_amount" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Principal Amount<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="principal_amount" type="text" formControlName="principal_amount" #principal_amount />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="principal_amount_proposed" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Principal Amount Proposed<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="principal_amount_proposed"
+                type="text"
+                formControlName="principal_amount_proposed"
+                #principal_amount_proposed />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="loan_disburse_date" class="col-12 mb-2 md:col-4 md:mb-0">Loan Disburse Date </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="loan_disburse_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="loan_disburse_date"
+                name="loan_disburse_date"
+                [showIcon]="true"
+                #loan_disburse_date*></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_rate" class="col-12 mb-2 md:col-4 md:mb-0">Interest Rate<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="interest_rate" type="text" formControlName="interest_rate" #interest_rate />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_product_cal_method" class="col-12 mb-2 md:col-4 md:mb-0"> Interest Product Cal Method </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_product_cal_method"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_product_cal_method"
+                name="interest_product_cal_method"
+                #interest_product_cal_method
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="total_installment" class="col-12 mb-2 md:col-4 md:mb-0">Total Installment </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="total_installment"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="total_installment"
+                name="total_installment"
+                [showIcon]="true"
+                #total_installment></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="installment_from" class="col-12 mb-2 md:col-4 md:mb-0">Installment From </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="installment_from"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="installment_from"
+                name="installment_from"
+                [showIcon]="true"
+                #installment_from></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="due_date" class="col-12 mb-2 md:col-4 md:mb-0">Due Date </label>
+            <div class="col-12 md:col-8">
+              <p-calendar
+                appDateFormat
+                id="due_date"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="due_date"
+                name="due_date"
+                [showIcon]="true"
+                #due_date></p-calendar>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="field grid">
+            <label htmlFor="repay_period" class="col-12 mb-2 md:col-4 md:mb-0">Repay Period<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="repay_period" type="text" formControlName="repay_period" #repay_period />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="field grid">
+            <label htmlFor="repay_every" class="col-12 mb-2 md:col-4 md:mb-0"> Repay Every </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="repay_every"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="repay_every"
+                name="repay_every"
+                #repay_every
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="Frequency"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="field grid">
+            <label htmlFor="repay_week" class="col-12 mb-2 md:col-4 md:mb-0"> Repay Week </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="repay_week"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="repay_week"
+                name="repay_week"
+                #repay_week
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="Frequency"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-3">
+          <div class="field grid">
+            <label htmlFor="repay_day" class="col-12 mb-2 md:col-4 md:mb-0"> Repay Day </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="repay_day"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="repay_day"
+                name="repay_day"
+                #repay_day
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="Frequency"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="amortization_method" class="col-12 mb-2 md:col-4 md:mb-0"> Amortization Method </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="amortization_method"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="amortization_method"
+                name="amortization_method"
+                #amortization_method
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="amortizationMethod"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="fix_installment_amount" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Fix Installmentmount<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="fix_installment_amount" type="text" formControlName="fix_installment_amount" #fix_installment_amount />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="fix_interest_amount" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Fix Interest Amount<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="fix_interest_amount" type="text" formControlName="fix_interest_amount" #fix_interest_amount />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_method" class="col-12 mb-2 md:col-4 md:mb-0"> Interest Method </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_method"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_method"
+                name="interest_method"
+                #interest_method
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="moratorium_principal_period" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Moratorium Principal Period<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="moratorium_principal_period"
+                type="text"
+                formControlName="moratorium_principal_period"
+                #moratorium_principal_period />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="moratorium_interest_period" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Moratorium Interest Period<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="moratorium_interest_period"
+                type="text"
+                formControlName="moratorium_interest_period"
+                #moratorium_interest_period />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Mortgage & Security">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Mortgage & Security</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="mortgage_amount" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Mortgage Amount<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="mortgage_amount" type="text" formControlName="mortgage_amount" #mortgage_amount />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="chq_nos" class="col-12 mb-2 md:col-4 md:mb-0">Chq Nos<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="chq_nos" type="text" formControlName="chq_nos" #chq_nos />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="chq_bank" class="col-12 mb-2 md:col-4 md:mb-0">Chq Bank<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="chq_bank" type="text" formControlName="chq_bank" #chq_bank />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="chq_detail" class="col-12 mb-2 md:col-4 md:mb-0">Chq Detail<span class="text-red-500">*</span> </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="chq_detail" type="text" formControlName="chq_detail" #chq_detail />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Gurantor Entry">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Gurantor Entry</h1>
+        </div>
+      </div></p-tabPanel
+    >
+    <p-tabPanel header="Over Due Interest Settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Over Due Interest Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_rate" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdue Interest Rate<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="overdue_interest_rate" type="text" formControlName="overdue_interest_rate" #overdue_interest_rate />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_flat" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdue Interest Flat<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input pInputText id="overdue_interest_flat" type="text" formControlName="overdue_interest_flat" #overdue_interest_flat />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_when" class="col-12 mb-2 md:col-4 md:mb-0">Overdue Interest When </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="overdue_interest_when"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="overdue_interest_when"
+                name="overdue_interest_when"
+                #overdue_interest_when
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_on_amount" class="col-12 mb-2 md:col-4 md:mb-0"> Overdue Interest On Amount </label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="overdue_interest_on_amount"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="overdue_interest_on_amount"
+                name="overdue_interest_on_amount"
+                #overdue_interest_on_amount
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_start_from_days" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdue Interest Start From Days<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="overdue_interest_start_from_days"
+                type="text"
+                formControlName="overdue_interest_start_from_days"
+                #overdue_interest_start_from_days />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_start_from_months" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdue Interest Start From Months<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="overdue_interest_start_from_months"
+                type="text"
+                formControlName="overdue_interest_start_from_months"
+                #overdue_interest_start_from_months />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_frequency" class="col-12 mb-2 md:col-4 md:mb-0"> Overdue Interest Frequency</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="overdue_interest_frequency"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="overdue_interest_frequency"
+                name="overdue_interest_frequency"
+                #overdue_interest_frequency
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="interestCalculationUsing"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_interval" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Overdue Interest Interval<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="overdue_interest_interval"
+                type="text"
+                formControlName="overdue_interest_interval"
+                #overdue_interest_interval />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div></div
+    ></p-tabPanel>
+    <p-tabPanel header="Settings">
+      <div class="grid">
+        <div class="col-12">
+          <h1 class="text-sm py-2">Settings</h1>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculated_period" class="col-12 mb-2 md:col-4 md:mb-0"> Interest Calculated Period</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_calculated_period"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_calculated_period"
+                name="interest_calculated_period"
+                #interest_calculated_period
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_calculate_after" class="col-12 mb-2 md:col-4 md:mb-0"
+              >Interest Calculate After<span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 md:col-8">
+              <input
+                pInputText
+                id="interest_calculate_after"
+                type="text"
+                formControlName="interest_calculate_after"
+                #interest_calculate_after />
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="interest_capitalize" class="col-12 mb-2 md:col-4 md:mb-0"> Interest Capitalize</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="interest_capitalize"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="interest_capitalize"
+                name="interest_capitalize"
+                #interest_capitalize
+                optionLabel="text"
+                [filter]="true"
+                optionValue="value"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="overdue_interest_capitalize" class="col-12 mb-2 md:col-4 md:mb-0"> Overdue Interest Capitalize</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="overdue_interest_capitalize"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="overdue_interest_capitalize"
+                name="overdue_interest_capitalize"
+                #overdue_interest_capitalize
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="charge_capitalize" class="col-12 mb-2 md:col-4 md:mb-0"> Charge Capitalize</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="charge_capitalize"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="charge_capitalize"
+                name="charge_capitalize"
+                #charge_capitalize
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="allow_multiple_disbursals" class="col-12 mb-2 md:col-4 md:mb-0"> Allow Multiple Disbursals</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="allow_multiple_disbursals"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="allow_multiple_disbursals"
+                name="allow_multiple_disbursals"
+                #allow_multiple_disbursals
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="allow_reschedule" class="col-12 mb-2 md:col-4 md:mb-0"> Allow Reschedule</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="allow_reschedule"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="allow_reschedule"
+                name="allow_reschedule"
+                #allow_reschedule
+                optionLabel="text"
+                optionValue="value"
+                [filter]="true"
+                [options]="yesNoList"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="compound_type" class="col-12 mb-2 md:col-4 md:mb-0"> Compound Type</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="compound_type"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="compound_type"
+                name="compound_type"
+                #compound_type
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="compoundType"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4">
+          <div class="field grid">
+            <label htmlFor="reschedule_strategy" class="col-12 mb-2 md:col-4 md:mb-0"> Reschedule Strategy</label>
+            <div class="col-12 md:col-8">
+              <p-dropdown
+                id="reschedule_strategy"
+                styleClass="w-full"
+                appendTo="body"
+                formControlName="reschedule_strategy"
+                name="reschedule_strategy"
+                #reschedule_strategy
+                optionLabel="label"
+                optionValue="value"
+                [filter]="true"
+                [options]="rescheduleStrategy"></p-dropdown>
+            </div>
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-right">
+        <button type="submit" pButton icon="pi pi-check" label="SAVE" class="px-4"></button></div
+    ></p-tabPanel>
+  </p-tabView>
+</form>

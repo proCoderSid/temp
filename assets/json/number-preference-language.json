@@ -1,0 +1,17 @@
+{
+  "English": {
+    "number_id": "Number Type",
+    "method_of_numbering": "Numbering Method",
+    "branch_id": "Branch",
+    "is_deactivated": "Active",
+    "common_no_id": "Common Number",
+    "number_start_from": "Number Start From",
+    "total_length": "Length",
+    "prefill_with_zero": "Prefill with Zero",
+    "fix_prefix": "Fix Prefix",
+    "prefix_text": "Prefix",
+    "allow_duplicate": "Allow Duplicate",
+    "sample": "Sample"
+  },
+  "Gujarati": {}
+}

@@ -1,0 +1,10 @@
+{
+  "English": {
+    "product_type_id": "Product",
+    "prefix_type": "Prefix",
+    "total_length": "Length",
+    "account_type": "Account Number",
+    "number_start_from": "Start From"
+  },
+  "Gujarati": {}
+}

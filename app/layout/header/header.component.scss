@@ -1,0 +1,33 @@
+::ng-deep .language-button {
+  display: inline-block;
+  .p-inputtext {
+    display: none !important;
+  }
+  .p-dropdown {
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid var(--pro-color-primary-contrast);
+    &:hover,
+    &:focus {
+      border: 1px solid var(--pro-color-primary-contrast);
+    }
+  }
+  .p-dropdown-trigger {
+    border-radius: 50%;
+    color: var(--pro-color-primary-contrast);
+    height: 2rem;
+    width: 2rem;
+    padding: 0;
+  }
+}
+
+::ng-deep .p-menubar {
+  background-color: transparent;
+  padding: 0;
+  .p-menuitem-link {
+    padding: 0.5rem;
+    // .p-menuitem-icon {
+    //   color: var(--pro-color-primary-contrast);
+    // }
+  }
+}

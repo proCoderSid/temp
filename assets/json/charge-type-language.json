@@ -1,0 +1,22 @@
+{
+  "English": {
+    "charge_applies_to": "Charge Applies to",
+    "charge_name": "Charge Name",
+    "in_native": "In Native",
+    "charge_time": "Charge Time",
+    "charge_calculation": "Charge Calculation",
+    "is_penalty": "Is Penalty",
+    "is_locked": "Locked",
+    "is_deactivated": "Active",
+    "amount": "Amount",
+    "charge_payment_by": "Charge Payment By",
+    "is_frequency": "Add Charge Frequency",
+    "charge_frequency": "Charge Frequency",
+    "charge_interval_1": "Frequency Interval",
+    "due_date": "Due Date",
+    "charge_interval_2": "Repeats Every",
+    "charge_gl_type": "Charge GL Account Type",
+    "gl_account_id": "GL Account"
+  },
+  "Gujarati": {}
+}
